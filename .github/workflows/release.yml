@@ -75,9 +75,9 @@ jobs:
 
   testflight:
     needs: test
-    # (a Mac: npm installs hxmc's darwin runtime objects there, which an
-    # iPhone's build links; helder signs without Xcode either way)
-    runs-on: macos-15
+    # (Linux: helder builds and signs the .ipa without a Mac or Xcode, the
+    # runtime objects an iPhone's build links fetched from hxmc's release)
+    runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
