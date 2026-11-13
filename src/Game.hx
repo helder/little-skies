@@ -64,8 +64,12 @@ class Game {
 	public final card = signal(false);
 	// the curtain drawn between holes
 	public final curtain = signal(false);
-	// the box wider than tall (a desktop window, a phone on its side)
+	// the box wider than tall (a desktop window, a phone on its side), its size (points)
 	public final wide = signal(false);
+	public final width = signal(390.0);
+	public final height = signal(844.0);
+	// the island shown (Course.worlds' index: the title's colours)
+	public final island:Signal<Int>;
 	// the island's sky, a CSS gradient
 	public final sky:Signal<String>;
 	// best strokes per hole (0: not finished), saved
@@ -153,8 +157,10 @@ class Game {
 	static inline var HANDS_OFF = 1.2;
 	// the fly-over's length (s)
 	static inline var INTRO = 3.4;
-	// the hole behind the title
+	// the hole behind the title, and how far above it the camera looks there (a share of its distance)
 	static inline var TITLE = 7;
+	static inline var TITLE_LIFT = 0.4;
+	static inline var TITLE_LIFT_WIDE = 0.27;
 	var aimDir = new Vec3(0, 0, -1);
 	var aimPower = 0.0;
 	// (holdAim: an aim held without a finger, a story's)
@@ -215,6 +221,7 @@ class Game {
 		sim = new Sim(Course.holes[TITLE]);
 		preview = new Aim(sim);
 		sky = signal(gradient(Course.worlds[sim.hole.world]));
+		island = signal(sim.hole.world);
 		stepFn = stepSim;
 		shot.within = nearBall;
 		shot.onGesture = g -> aim();
@@ -316,6 +323,7 @@ class Game {
 
 	function theme(w:World) {
 		sky(gradient(w));
+		island(sim.hole.world);
 		lightUp();
 	}
 
@@ -893,6 +901,8 @@ class Game {
 		if (b != null) {
 			var w = b.width > b.height * 1.05;
 			if (w != wide.peek()) wide(w);
+			if (Math.abs(b.width - width.peek()) > 0.5) width(b.width);
+			if (Math.abs(b.height - height.peek()) > 0.5) height(b.height);
 		}
 		// (slow motion after a hole-in, easing back)
 		if (slowTime > 0) {
@@ -1584,12 +1594,14 @@ class Game {
 		} else touched += dt;
 		var s = screen.peek();
 		if (s == "title" || (s == "menu" && back == "title")) {
-			// (the title: a slow turn round the hole)
+			// (the title: a slow turn round the hole, framed low: the camera
+			// looks above the course, so it sits below the lockup)
 			var cx = (minX + maxX) / 2, cz = (minZ + maxZ) / 2;
-			o.target = new Vec3(cx, 0, cz);
+			var d = Math.max(7, Math.max(maxX - minX, maxZ - minZ) * 0.95 + 2);
+			o.target = new Vec3(cx, d * (wide.peek() ? TITLE_LIFT_WIDE : TITLE_LIFT), cz);
 			o.yaw += dt * 0.12;
 			o.pitch = 0.62;
-			o.distance = Math.max(7, Math.max(maxX - minX, maxZ - minZ) * 0.95 + 2);
+			o.distance = d;
 			o.apply();
 			return;
 		}

@@ -1,25 +1,35 @@
 {
   "$schema": "https://helder.build/schema/helder.json",
-  "name": "Floating Greens",
-  "description": "Mini golf on floating islands: eighteen holes on three islands, each with its own tricks (bumpers, turnstiles, wind, lifts, portals, switches and gates). Drag back from the ball, let go to shoot.",
-  "id": "build.helder.golf",
-  "version": "1.1",
+  "name": "Little Skies",
+  "description": "Mini golf on three islands in the sky: eighteen holes, each island with its own tricks (bumpers, turnstiles, wind, lifts, portals, switches and gates). Drag back from the ball, let go to shoot.",
+  "id": "build.helder.littleskies",
+  "version": "1.0",
+  "build": 1,
   "entry": "src/LittleSkies.hx",
-  "icon": "icon.svg",
+  "icon": "brand/icon-ios.svg",
   "colors": {
-    "theme": "#9fd0ff",
+    "theme": "#ffae78",
     "background": "#fbdfea"
   },
   "run": {
-    "name": "floating-greens",
+    "name": "little-skies",
     "listed": true,
     "kind": "game",
-    "tags": [
-      "golf",
-      "physics",
-      "3d",
-      "puzzle"
-    ],
-    "source": "https://github.com/helder/helder/tree/main/examples/golf"
+    "tags": ["golf", "physics", "3d", "puzzle"],
+    "source": "https://github.com/helder/little-skies"
+  },
+  "targets": {
+    "android": {
+      "adaptiveIcon": {
+        "foreground": "brand/icon-android-foreground.svg",
+        "background": "brand/icon-android-background.svg",
+        "monochrome": "brand/icon-monochrome.svg"
+      },
+      "publish": [{"to": "play", "track": "internal"}]
+    },
+    "ios": {
+      "nonExemptEncryption": false,
+      "publish": ["testflight"]
+    }
   }
 }

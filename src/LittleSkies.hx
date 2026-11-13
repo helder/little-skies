@@ -176,7 +176,31 @@ class LittleSkies implements Markup {
 		</view>;
 	}
 
-	// the title over the hole turning slowly behind it
+	// the title's lockup (brand/: the island over "little / skies", in each
+	// island's colours) and the haze of the island's sky behind it, so a far
+	// island or the course's far end never runs through the letters
+	static final lockups = [for (w in ["meadowdrift", "copperwind", "lanternwater"]) svg(w)];
+	static final hazes = [
+		helder.ui.Svg.parse(helder.asset.Asset.embed("brand/title-haze-meadowdrift.svg").toString()),
+		helder.ui.Svg.parse(helder.asset.Asset.embed("brand/title-haze-copperwind.svg").toString()),
+		helder.ui.Svg.parse(helder.asset.Asset.embed("brand/title-haze-lanternwater.svg").toString())
+	];
+	// the letters' colour on each island's sky (the subtitle's, at 82%)
+	static final LETTERS = ["#27314f", "#55263a", "#fff3df"];
+	// the lockup's size (brand/title-*.svg's viewBox)
+	static inline var LOCKUP_W = 428.7;
+	static inline var LOCKUP_H = 549.2;
+
+	static function svg(island:String):helder.ui.Svg
+		return switch island {
+			case "meadowdrift": helder.ui.Svg.parse(helder.asset.Asset.embed("brand/title-meadowdrift.svg").toString());
+			case "copperwind": helder.ui.Svg.parse(helder.asset.Asset.embed("brand/title-copperwind.svg").toString());
+			case _: helder.ui.Svg.parse(helder.asset.Asset.embed("brand/title-lanternwater.svg").toString());
+		}
+
+	// the title over the hole turning slowly behind it: the lockup centred,
+	// on its side about 38% of the screen's height with its top 4% down, upright
+	// 61% of its width, 9% down; the subtitle 14 points under it
 	static function Title(props:{game:Game}):View {
 		var g = props.game;
 		var total = memo(() -> {
@@ -185,11 +209,17 @@ class LittleSkies implements Markup {
 				s += stars(g.best()[i], Course.holes[i].par);
 			s;
 		});
+		var height = memo(() -> Math.round(g.wide() ? g.height() * 0.38 : g.width() * 0.61 * LOCKUP_H / LOCKUP_W));
+		var width = memo(() -> Math.round(height() * LOCKUP_W / LOCKUP_H));
+		var top = memo(() -> Math.round(g.height() * (g.wide() ? 0.04 : 0.09)));
 		return <view tag="title" position="absolute" left={0} top={0} right={0} bottom={0} pointer-events="none" align-items="center" justify="space-between"
-			padding-top="calc(env(safe-area-inset-top) + 64px)" padding-bottom="calc(env(safe-area-inset-bottom) + 48px)" padding-left={20} padding-right={20}>
-			<view slot="drop" transition="opacity 0.5s ease-out, transform 0.6s ease-out" align-items="center" row-gap={4}>
-				<text font-size={g.wide() ? 64 : 46} font-weight={500} font-family="Fredoka" color="#ffffff" text-align="center" text-shadow="0 3 0 #2b2d4240">Floating Greens</text>
-				<text font-size={17} font-weight={600} color="#ffffff" text-align="center" text-shadow="0 1 0 #2b2d4240">Mini golf on three islands in the sky</text>
+			padding-top="env(safe-area-inset-top)" padding-bottom="calc(env(safe-area-inset-bottom) + 48px)" padding-left={20} padding-right={20}>
+			<view slot="drop" transition="opacity 0.5s ease-out, transform 0.6s ease-out" align-items="center" padding-top={top()}>
+				<view tag="lockup" width={width()} height={height()}>
+					<image position="absolute" left={-width() / 2} top={-height() * 0.35} width={width() * 2} height={height() * 1.7} src={hazes[g.island()]}/>
+					<image position="absolute" left={0} top={0} width={width()} height={height()} src={lockups[g.island()]}/>
+				</view>
+				<text margin-top={14} font-size={g.wide() ? 18 : 16} font-weight={700} color={LETTERS[g.island()]} opacity={0.82} text-align="center">Mini golf on three islands in the sky</text>
 			</view>
 			<view slot="rise" transition="opacity 0.5s ease-out, transform 0.6s ease-out" align-items="center" row-gap={12}>
 				<Button tag="play" label={g.best()[0] > 0 ? "Play hole " + (g.holeIndex() + 1) : "Play"} primary wide onPress={g.start}/>
