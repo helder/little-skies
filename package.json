@@ -1,0 +1,14 @@
+{
+  "name": "little-skies",
+  "private": true,
+  "description": "Little Skies: mini golf on three islands in the sky, a helder game",
+  "license": "MIT",
+  "scripts": {
+    "dev": "helder dev",
+    "test": "helder test --target all",
+    "build": "helder build"
+  },
+  "devDependencies": {
+    "helder": "^0.1.0-nightly.20261113.4355faa"
+  }
+}

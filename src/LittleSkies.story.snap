@@ -1,0 +1,171 @@
+// helder.test snapshots: `helder test -u` rewrites them
+
+--- story Holes/Booster Run: Holes/Booster Run (22 lines)
+Node#root 0,0 390x844
+  Node#view 0,0 390x844
+    SceneBox#scene 0,0 390x844
+    Node#view 0,0 390x844
+      Node#view 14,12 362x51
+        Node#menu 14,12 177x48
+          Node#view 20,18 36x36
+            TextNode#text 29,25 18x22 "10"
+          Node#view 66,19 111x35
+            TextNode#text 66,19 111x13 "COPPERWIND CLIFFS"
+            TextNode#text 66,32 111x22 "Booster Run"
+        Node#score 250,12 126x51
+          Node#view 266,18 20x39
+            TextNode#text 266,18 20x14 "PAR"
+            TextNode#text 271,32 10x25 "2"
+          Node#view 300,18 1x39
+          Node#view 315,18 45x39
+            TextNode#text 315,18 45x14 "STROKES"
+            TextNode#strokes 332,32 10x25 "1"
+      Node#view 14,63 362x765
+      Node#view 14,828 362x0
+    Node#view 0,0 390x844
+
+--- story Holes/Brittle Bridge: Holes/Brittle Bridge (22 lines)
+Node#root 0,0 390x844
+  Node#view 0,0 390x844
+    SceneBox#scene 0,0 390x844
+    Node#view 0,0 390x844
+      Node#view 14,12 362x51
+        Node#menu 14,12 185x48
+          Node#view 20,18 36x36
+            TextNode#text 29,25 18x22 "16"
+          Node#view 66,19 119x35
+            TextNode#text 66,19 119x13 "LANTERNWATER"
+            TextNode#text 66,32 119x22 "Brittle Bridge"
+        Node#score 250,12 126x51
+          Node#view 266,18 20x39
+            TextNode#text 266,18 20x14 "PAR"
+            TextNode#text 271,32 10x25 "4"
+          Node#view 300,18 1x39
+          Node#view 315,18 45x39
+            TextNode#text 315,18 45x14 "STROKES"
+            TextNode#strokes 332,32 10x25 "1"
+      Node#view 14,63 362x765
+      Node#view 14,828 362x0
+    Node#view 0,0 390x844
+
+--- story Holes/Moonrise: Holes/Moonrise (22 lines)
+Node#root 0,0 390x844
+  Node#view 0,0 390x844
+    SceneBox#scene 0,0 390x844
+    Node#view 0,0 390x844
+      Node#view 14,12 362x51
+        Node#menu 14,12 144x48
+          Node#view 20,18 36x36
+            TextNode#text 29,25 18x22 "18"
+          Node#view 66,19 78x35
+            TextNode#text 66,19 78x13 "LANTERNWATER"
+            TextNode#text 66,32 78x22 "Moonrise"
+        Node#score 250,12 126x51
+          Node#view 266,18 20x39
+            TextNode#text 266,18 20x14 "PAR"
+            TextNode#text 271,32 10x25 "4"
+          Node#view 300,18 1x39
+          Node#view 315,18 45x39
+            TextNode#text 315,18 45x14 "STROKES"
+            TextNode#strokes 332,32 10x25 "1"
+      Node#view 14,63 362x765
+      Node#view 14,828 362x0
+    Node#view 0,0 390x844
+
+--- story Holes/Pinball: Holes/Pinball (22 lines)
+Node#root 0,0 390x844
+  Node#view 0,0 390x844
+    SceneBox#scene 0,0 390x844
+    Node#view 0,0 390x844
+      Node#view 14,12 362x51
+        Node#menu 14,12 138x48
+          Node#view 20,18 36x36
+            TextNode#text 34,25 9x22 "4"
+          Node#view 66,19 72x35
+            TextNode#text 66,19 72x13 "MEADOWDRIFT"
+            TextNode#text 66,32 72x22 "Pinball"
+        Node#score 250,12 126x51
+          Node#view 266,18 20x39
+            TextNode#text 266,18 20x14 "PAR"
+            TextNode#text 271,32 10x25 "2"
+          Node#view 300,18 1x39
+          Node#view 315,18 45x39
+            TextNode#text 315,18 45x14 "STROKES"
+            TextNode#strokes 332,32 10x25 "1"
+      Node#view 14,63 362x765
+      Node#view 14,828 362x0
+    Node#view 0,0 390x844
+
+--- story Holes/Roundabout: Holes/Roundabout (24 lines)
+Node#root 0,0 390x844
+  Node#view 0,0 390x844
+    SceneBox#scene 0,0 390x844
+    Node#view 0,0 390x844
+      Node#view 14,12 362x51
+        Node#menu 14,12 177x48
+          Node#view 20,18 36x36
+            TextNode#text 29,25 18x22 "12"
+          Node#view 66,19 111x35
+            TextNode#text 66,19 111x13 "COPPERWIND CLIFFS"
+            TextNode#text 66,32 111x22 "Roundabout"
+        Node#score 250,12 126x51
+          Node#view 266,18 20x39
+            TextNode#text 266,18 20x14 "PAR"
+            TextNode#text 271,32 10x25 "3"
+          Node#view 300,18 1x39
+          Node#view 315,18 45x39
+            TextNode#text 315,18 45x14 "STROKES"
+            TextNode#strokes 332,32 10x25 "0"
+      Node#view 14,63 362x765
+      Node#view 14,828 362x0
+      Node#power -30,-14 60x28
+        TextNode#text -11,-9 22x18 "80%"
+    Node#view 0,0 390x844
+
+--- story Holes/Skipping Stone: Holes/Skipping Stone (22 lines)
+Node#root 0,0 390x844
+  Node#view 0,0 390x844
+    SceneBox#scene 0,0 390x844
+    Node#view 0,0 390x844
+      Node#view 14,12 362x51
+        Node#menu 14,12 185x48
+          Node#view 20,18 36x36
+            TextNode#text 29,25 18x22 "13"
+          Node#view 66,19 119x35
+            TextNode#text 66,19 119x13 "LANTERNWATER"
+            TextNode#text 66,32 119x22 "Skipping Stone"
+        Node#score 250,12 126x51
+          Node#view 266,18 20x39
+            TextNode#text 266,18 20x14 "PAR"
+            TextNode#text 271,32 10x25 "2"
+          Node#view 300,18 1x39
+          Node#view 315,18 45x39
+            TextNode#text 315,18 45x14 "STROKES"
+            TextNode#strokes 332,32 10x25 "1"
+      Node#view 14,63 362x765
+      Node#view 14,828 362x0
+    Node#view 0,0 390x844
+
+--- story Holes/Turnstile: Holes/Turnstile (22 lines)
+Node#root 0,0 390x844
+  Node#view 0,0 390x844
+    SceneBox#scene 0,0 390x844
+    Node#view 0,0 390x844
+      Node#view 14,12 362x51
+        Node#menu 14,12 177x48
+          Node#view 20,18 36x36
+            TextNode#text 34,25 9x22 "8"
+          Node#view 66,19 111x35
+            TextNode#text 66,19 111x13 "COPPERWIND CLIFFS"
+            TextNode#text 66,32 111x22 "Turnstile"
+        Node#score 250,12 126x51
+          Node#view 266,18 20x39
+            TextNode#text 266,18 20x14 "PAR"
+            TextNode#text 271,32 10x25 "2"
+          Node#view 300,18 1x39
+          Node#view 315,18 45x39
+            TextNode#text 315,18 45x14 "STROKES"
+            TextNode#strokes 332,32 10x25 "1"
+      Node#view 14,63 362x765
+      Node#view 14,828 362x0
+    Node#view 0,0 390x844

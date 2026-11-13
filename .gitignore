@@ -1,0 +1,9 @@
+node_modules/
+bin/
+.DS_Store
+# signing keys and store credentials never live here (CI secrets: README)
+*.pem
+*.key
+*.p8
+*.p12
+*.mobileprovision
