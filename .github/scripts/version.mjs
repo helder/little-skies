@@ -3,8 +3,8 @@
 //   node .github/scripts/version.mjs <ref> <build>
 //
 // A version tag (v1.2.0) is "version": "1.2.0"; another ref (a branch: a
-// dry run) keeps helder.json's. <build> (the workflow's run number, higher
-// each run) is "build": Android's versionCode and iOS's CFBundleVersion,
+// dry run) keeps helder.json's. <build> (the workflow's run number plus 100,
+// past the first bundle uploaded to Play by hand) is "build": Android's versionCode and iOS's CFBundleVersion,
 // which both stores want higher than the last upload's.
 import fs from 'node:fs';
 
