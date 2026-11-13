@@ -9,6 +9,6 @@
     "build": "helder build"
   },
   "devDependencies": {
-    "helder": "^0.1.0-nightly.20261113.0649344"
+    "helder": "^0.1.0-nightly.20261113.daa9e5c"
   }
 }
