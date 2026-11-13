@@ -1,0 +1,53 @@
+# Every push to main: the tests (the recorded rounds, natively and as
+# wasm32-wasi; the stories mounted), then the web build on helder.run
+# (https://little-skies.helder.run, its page helder.build/little-skies),
+# its screenshots the stories' (LittleSkies.story.hx, store: true).
+# No secret: GitHub Actions' OIDC token for helder.build (trusted
+# publishing). The first publish from GitHub makes the address the
+# repository owner's and trusts this repository; later ones must come from
+# here (helder.build's settings trust others).
+name: run
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      # (fonts for the stories' text; Mesa's EGL for what draws headless)
+      - run: sudo apt-get update -qq && sudo apt-get install -qqy --no-install-recommends fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri
+      - run: npx helder test --target all
+
+  publish:
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: run
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      # (the screenshots: the stories drawn headless on Mesa's llvmpipe)
+      - run: sudo apt-get update -qq && sudo apt-get install -qqy --no-install-recommends fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri
+      - run: npx helder publish --run

@@ -1,0 +1,96 @@
+# The stores: a version tag (v1.2.0) builds the release and uploads it to
+# Google Play's internal track and to TestFlight, the version the tag's and
+# the build number this workflow's run (both stores want it higher each
+# time). By hand (Actions > release > Run workflow) it does the same with
+# --dry-run: built, signed, the stores' APIs reached, nothing uploaded; the
+# way to try the secrets before a real release.
+#
+# Secrets (Settings > Secrets and variables > Actions; README: Publishing):
+#   HELDER_ANDROID_UPLOAD_IDENTITY  Play's upload key: its certificate and private key in one PEM
+#   HELDER_IOS_IDENTITY             the Apple Distribution certificate and its private key in one PEM
+#                                   (Apple's WWDR intermediate is added by helder)
+#   HELDER_ASC_API_KEY              App Store Connect's API key: JSON of key_id, issuer_id and private_key
+#                                   (the .p8's text); or HELDER_ASC_KEY_ID, HELDER_ASC_ISSUER_ID, HELDER_ASC_KEY
+#   HELDER_IOS_PROFILE              optional: the App Store provisioning profile, base64 (else fetched with the API key)
+# Google Play, one of:
+#   variables GCP_WORKLOAD_IDENTITY_PROVIDER and GCP_SERVICE_ACCOUNT  Workload Identity Federation (preferred: no key)
+#   secret HELDER_PLAY_SERVICE_ACCOUNT                                a service account's JSON key
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # (a dispatch: a dry run)
+  DRY: ${{ github.event_name == 'workflow_dispatch' && '--dry-run' || '' }}
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: sudo apt-get update -qq && sudo apt-get install -qqy --no-install-recommends fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri
+      - run: npx helder test --target all
+
+  play:
+    needs: test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - name: The version (the tag's) and the build number (this run's)
+        run: node .github/scripts/version.mjs "${{ github.ref_name }}" "${{ github.run_number }}"
+      - name: Google's access token (Workload Identity Federation)
+        if: vars.GCP_WORKLOAD_IDENTITY_PROVIDER != ''
+        id: google
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/androidpublisher
+      - name: Google Play, internal track
+        env:
+          HELDER_ANDROID_UPLOAD_IDENTITY: ${{ secrets.HELDER_ANDROID_UPLOAD_IDENTITY }}
+          GOOGLE_OAUTH_ACCESS_TOKEN: ${{ steps.google.outputs.access_token }}
+          HELDER_PLAY_SERVICE_ACCOUNT: ${{ secrets.HELDER_PLAY_SERVICE_ACCOUNT }}
+        run: npx helder publish --play --track internal $DRY
+
+  testflight:
+    needs: test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - name: The version (the tag's) and the build number (this run's)
+        run: node .github/scripts/version.mjs "${{ github.ref_name }}" "${{ github.run_number }}"
+      - name: TestFlight
+        env:
+          HELDER_IOS_IDENTITY: ${{ secrets.HELDER_IOS_IDENTITY }}
+          HELDER_IOS_PROFILE: ${{ secrets.HELDER_IOS_PROFILE }}
+          HELDER_ASC_API_KEY: ${{ secrets.HELDER_ASC_API_KEY }}
+          HELDER_ASC_KEY_ID: ${{ secrets.HELDER_ASC_KEY_ID }}
+          HELDER_ASC_ISSUER_ID: ${{ secrets.HELDER_ASC_ISSUER_ID }}
+          HELDER_ASC_KEY: ${{ secrets.HELDER_ASC_KEY }}
+        run: npx helder publish --testflight $DRY

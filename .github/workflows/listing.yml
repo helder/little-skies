@@ -1,0 +1,76 @@
+# The stores' listings, by hand (Actions > listing > Run workflow): the
+# screenshots rendered from the stories with store: true
+# (LittleSkies.story.hx: helder publish --screenshots, at each store's
+# sizes with their captions) set on Google Play's and App Store Connect's
+# listings, changed ones only (by hash). dry_run (the default) only lists
+# the changes; either way the screenshots and their review sheet
+# (bin/store/review.html) are kept as an artifact. The secrets are
+# release.yml's.
+name: listing
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only list what would change"
+        type: boolean
+        default: true
+      store:
+        description: "Which store"
+        type: choice
+        options: [both, play, testflight]
+        default: both
+      locale:
+        description: "The listing's language"
+        default: en-US
+
+permissions:
+  contents: read
+
+jobs:
+  listing:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      # (the stories drawn headless on Mesa's llvmpipe)
+      - run: sudo apt-get update -qq && sudo apt-get install -qqy --no-install-recommends fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri
+      - name: Google's access token (Workload Identity Federation)
+        if: vars.GCP_WORKLOAD_IDENTITY_PROVIDER != '' && inputs.store != 'testflight'
+        id: google
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/androidpublisher
+      - name: The listings
+        env:
+          STORE: ${{ inputs.store }}
+          LOCALE: ${{ inputs.locale }}
+          DRY: ${{ inputs.dry_run && '--dry-run' || '' }}
+          GOOGLE_OAUTH_ACCESS_TOKEN: ${{ steps.google.outputs.access_token }}
+          HELDER_PLAY_SERVICE_ACCOUNT: ${{ secrets.HELDER_PLAY_SERVICE_ACCOUNT }}
+          HELDER_ASC_API_KEY: ${{ secrets.HELDER_ASC_API_KEY }}
+          HELDER_ASC_KEY_ID: ${{ secrets.HELDER_ASC_KEY_ID }}
+          HELDER_ASC_ISSUER_ID: ${{ secrets.HELDER_ASC_ISSUER_ID }}
+          HELDER_ASC_KEY: ${{ secrets.HELDER_ASC_KEY }}
+        run: |
+          case "$STORE" in
+            play) which=--play ;;
+            testflight) which=--testflight ;;
+            *) which="" ;;
+          esac
+          npx helder publish --listing $which --locale "$LOCALE" $DRY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: store-screenshots
+          path: bin/store
