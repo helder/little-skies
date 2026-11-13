@@ -1,7 +1,7 @@
 {
   "$schema": "https://helder.build/schema/helder.json",
   "name": "Little Skies",
-  "description": "Mini golf on three islands in the sky: eighteen holes, each island with its own tricks (bumpers, turnstiles, wind, lifts, portals, switches and gates). Drag back from the ball, let go to shoot.",
+  "description": "Eighteen holes of mini golf, each island with its own tricks (bumpers, turnstiles, wind, lifts, portals, switches and gates). Drag back from the ball, let go to shoot.",
   "id": "build.helder.littleskies",
   "version": "1.0",
   "build": 1,
@@ -17,6 +17,57 @@
     "kind": "game",
     "tags": ["golf", "physics", "3d", "puzzle"],
     "source": "https://github.com/helder/little-skies"
+  },
+  "listing": {
+    "subtitle": "Mini golf on floating islands",
+    "summary": "Eighteen holes, each with its own trick: bumpers, portals, crumbling bridges.",
+    "description": "store/description.txt",
+    "keywords": ["mini golf", "golf", "putt", "puzzle", "islands", "sky", "physics", "3d", "casual", "relaxing"],
+    "promo": "Drag back, let go, and watch the line bend around the bumpers. Eighteen holes, no ads, no timers.",
+    "website": "https://helder.build/little-skies",
+    "support": "https://github.com/helder/little-skies/issues",
+    "privacy": "https://github.com/helder/little-skies/blob/main/PRIVACY.md",
+    "email": "${HELDER_STORE_EMAIL}",
+    "copyright": "2026 Codeurs VOF",
+    "category": "GAMES_SPORTS",
+    "appStore": {
+      "app": {"contentRightsDeclaration": "DOES_NOT_USE_THIRD_PARTY_CONTENT"},
+      "categories": {"primarySubcategoryTwo": "GAMES_PUZZLE"},
+      "ageRating": {
+        "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+        "contests": "NONE",
+        "gamblingSimulated": "NONE",
+        "gunsOrOtherWeapons": "NONE",
+        "horrorOrFearThemes": "NONE",
+        "matureOrSuggestiveThemes": "NONE",
+        "medicalOrTreatmentInformation": "NONE",
+        "profanityOrCrudeHumor": "NONE",
+        "sexualContentGraphicAndNudity": "NONE",
+        "sexualContentOrNudity": "NONE",
+        "violenceCartoonOrFantasy": "NONE",
+        "violenceRealistic": "NONE",
+        "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+        "advertising": false,
+        "ageAssurance": false,
+        "gambling": false,
+        "healthOrWellnessTopics": false,
+        "lootBox": false,
+        "messagingAndChat": false,
+        "parentalControls": false,
+        "socialMedia": false,
+        "socialMediaAgeRestricted": false,
+        "unrestrictedWebAccess": false,
+        "userGeneratedContent": false
+      },
+      "reviewDetail": {
+        "contactFirstName": "${HELDER_REVIEW_FIRST_NAME}",
+        "contactLastName": "${HELDER_REVIEW_LAST_NAME}",
+        "contactEmail": "${HELDER_STORE_EMAIL}",
+        "contactPhone": "${HELDER_REVIEW_PHONE}",
+        "demoAccountRequired": false,
+        "notes": "A mini golf game: no account, no network, no purchases. Drag back from the ball and let go to shoot."
+      }
+    }
   },
   "targets": {
     "android": {

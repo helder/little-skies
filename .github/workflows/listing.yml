@@ -1,11 +1,12 @@
-# The stores' listings, by hand (Actions > listing > Run workflow): the
-# screenshots rendered from the stories with store: true
+# The stores' listings, by hand (Actions > listing > Run workflow):
+# helder.json's listing (the text, the age rating, the review's contact)
+# and the screenshots rendered from the stories with store: true
 # (LittleSkies.story.hx: helder publish --screenshots, at each store's
 # sizes with their captions) set on Google Play's and App Store Connect's
 # listings, changed ones only (by hash). dry_run (the default) only lists
 # the changes; either way the screenshots and their review sheet
 # (bin/store/review.html) are kept as an artifact. The secrets are
-# release.yml's.
+# release.yml's (the contacts: listing's ${NAME}s).
 name: listing
 
 on:
@@ -62,6 +63,10 @@ jobs:
           HELDER_ASC_KEY_ID: ${{ secrets.HELDER_ASC_KEY_ID }}
           HELDER_ASC_ISSUER_ID: ${{ secrets.HELDER_ASC_ISSUER_ID }}
           HELDER_ASC_KEY: ${{ secrets.HELDER_ASC_KEY }}
+          HELDER_STORE_EMAIL: ${{ secrets.HELDER_STORE_EMAIL }}
+          HELDER_REVIEW_FIRST_NAME: ${{ secrets.HELDER_REVIEW_FIRST_NAME }}
+          HELDER_REVIEW_LAST_NAME: ${{ secrets.HELDER_REVIEW_LAST_NAME }}
+          HELDER_REVIEW_PHONE: ${{ secrets.HELDER_REVIEW_PHONE }}
         run: |
           case "$STORE" in
             play) which=--play ;;

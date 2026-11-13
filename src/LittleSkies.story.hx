@@ -9,7 +9,14 @@ import helder.view.View;
 // (Rounds) or an aim held, the game stepped on the story's clock frame
 // by frame (Controls.play) to its moment, then settled. In this order on
 // helder.run's page. In the studio each runs live.
-final turnstile = story({name: "Holes/Turnstile", store: true, caption: "Three islands in the sky", render: c -> round(c, 8)});
+// (Turnstile: Google Play's feature graphic too, feature: true)
+final turnstile = story({
+	name: "Holes/Turnstile",
+	store: true,
+	caption: "Eighteen holes, three islands",
+	feature: true,
+	render: c -> round(c, 8)
+});
 
 final roundabout = story({
 	name: "Holes/Roundabout",

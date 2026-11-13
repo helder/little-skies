@@ -64,6 +64,10 @@ class Game {
 	public final card = signal(false);
 	// the curtain drawn between holes
 	public final curtain = signal(false);
+	// the first frames drawn smoothly (the scene's pipelines, meshes and the
+	// title's glyphs made behind the loading curtain); pulse, its dots' clock
+	public final ready = signal(false);
+	public final pulse = signal(0.0);
 	// the box wider than tall (a desktop window, a phone on its side), its size (points)
 	public final wide = signal(false);
 	public final width = signal(390.0);
@@ -179,6 +183,8 @@ class Game {
 	var carded = false;
 	var lastTime = -1.0;
 	var realTime = 0.0;
+	// (frames in a row under 34 ms since the renderer was set up)
+	var smooth = 0;
 	var touched = 99.0;
 	var wantYaw = 0.0;
 	var turning = false;
@@ -897,6 +903,7 @@ class Game {
 		var dt = lastTime < 0 ? 0 : Math.min(0.1, t - lastTime);
 		lastTime = t;
 		realTime += dt;
+		if (!ready.peek()) warm(dt);
 		var b = box;
 		if (b != null) {
 			var w = b.width > b.height * 1.05;
@@ -926,6 +933,16 @@ class Game {
 		focus(dt);
 		watch(dt);
 		transition(dt);
+	}
+
+	// the loading curtain lifted once six frames in a row came under 34 ms
+	// (the first ones make pipelines, upload meshes and raster glyphs), or
+	// after 4 seconds whatever the frames
+	function warm(dt:Float) {
+		pulse(realTime);
+		if (renderer == null && realTime < 4) return;
+		smooth = dt > 0 && dt < 0.034 ? smooth + 1 : 0;
+		if (smooth >= 6 || realTime >= 4) ready(true);
 	}
 
 	// the curtain between holes: drawn, the hole changed behind it, opened

@@ -1,6 +1,6 @@
 // helder.test snapshots: `helder test -u` rewrites them
 
---- story Holes/Booster Run: Holes/Booster Run (22 lines)
+--- story Holes/Booster Run: Holes/Booster Run (26 lines)
 Node#root 0,0 390x844
   Node#view 0,0 390x844
     SceneBox#scene 0,0 390x844
@@ -23,8 +23,12 @@ Node#root 0,0 390x844
       Node#view 14,63 362x765
       Node#view 14,828 362x0
     Node#view 0,0 390x844
+      Node#view 170,417 50x10
+        Node#view 170,417 10x10
+        Node#view 190,417 10x10
+        Node#view 210,417 10x10
 
---- story Holes/Brittle Bridge: Holes/Brittle Bridge (22 lines)
+--- story Holes/Brittle Bridge: Holes/Brittle Bridge (26 lines)
 Node#root 0,0 390x844
   Node#view 0,0 390x844
     SceneBox#scene 0,0 390x844
@@ -47,8 +51,12 @@ Node#root 0,0 390x844
       Node#view 14,63 362x765
       Node#view 14,828 362x0
     Node#view 0,0 390x844
+      Node#view 170,417 50x10
+        Node#view 170,417 10x10
+        Node#view 190,417 10x10
+        Node#view 210,417 10x10
 
---- story Holes/Moonrise: Holes/Moonrise (22 lines)
+--- story Holes/Moonrise: Holes/Moonrise (26 lines)
 Node#root 0,0 390x844
   Node#view 0,0 390x844
     SceneBox#scene 0,0 390x844
@@ -71,8 +79,12 @@ Node#root 0,0 390x844
       Node#view 14,63 362x765
       Node#view 14,828 362x0
     Node#view 0,0 390x844
+      Node#view 170,417 50x10
+        Node#view 170,417 10x10
+        Node#view 190,417 10x10
+        Node#view 210,417 10x10
 
---- story Holes/Pinball: Holes/Pinball (22 lines)
+--- story Holes/Pinball: Holes/Pinball (26 lines)
 Node#root 0,0 390x844
   Node#view 0,0 390x844
     SceneBox#scene 0,0 390x844
@@ -95,8 +107,12 @@ Node#root 0,0 390x844
       Node#view 14,63 362x765
       Node#view 14,828 362x0
     Node#view 0,0 390x844
+      Node#view 170,417 50x10
+        Node#view 170,417 10x10
+        Node#view 190,417 10x10
+        Node#view 210,417 10x10
 
---- story Holes/Roundabout: Holes/Roundabout (24 lines)
+--- story Holes/Roundabout: Holes/Roundabout (28 lines)
 Node#root 0,0 390x844
   Node#view 0,0 390x844
     SceneBox#scene 0,0 390x844
@@ -121,8 +137,12 @@ Node#root 0,0 390x844
       Node#power -30,-14 60x28
         TextNode#text -11,-9 22x18 "80%"
     Node#view 0,0 390x844
+      Node#view 170,417 50x10
+        Node#view 170,417 10x10
+        Node#view 190,417 10x10
+        Node#view 210,417 10x10
 
---- story Holes/Skipping Stone: Holes/Skipping Stone (22 lines)
+--- story Holes/Skipping Stone: Holes/Skipping Stone (26 lines)
 Node#root 0,0 390x844
   Node#view 0,0 390x844
     SceneBox#scene 0,0 390x844
@@ -145,8 +165,12 @@ Node#root 0,0 390x844
       Node#view 14,63 362x765
       Node#view 14,828 362x0
     Node#view 0,0 390x844
+      Node#view 170,417 50x10
+        Node#view 170,417 10x10
+        Node#view 190,417 10x10
+        Node#view 210,417 10x10
 
---- story Holes/Turnstile: Holes/Turnstile (22 lines)
+--- story Holes/Turnstile: Holes/Turnstile (26 lines)
 Node#root 0,0 390x844
   Node#view 0,0 390x844
     SceneBox#scene 0,0 390x844
@@ -169,3 +193,7 @@ Node#root 0,0 390x844
       Node#view 14,63 362x765
       Node#view 14,828 362x0
     Node#view 0,0 390x844
+      Node#view 170,417 50x10
+        Node#view 170,417 10x10
+        Node#view 190,417 10x10
+        Node#view 210,417 10x10

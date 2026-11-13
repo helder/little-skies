@@ -1,9 +1,12 @@
-# The stores: a version tag (v1.2.0) builds the release and uploads it to
-# Google Play's internal track and to TestFlight, the version the tag's and
-# the build number this workflow's run (both stores want it higher each
-# time). By hand (Actions > release > Run workflow) it does the same with
-# --dry-run: built, signed, the stores' APIs reached, nothing uploaded; the
-# way to try the secrets before a real release.
+# The stores: a version tag (v1.2.0) sets each store's listing from
+# helder.json (its text and the stories' screenshots), builds the release
+# and publishes it: Google Play's production track, and the App Store (the
+# build to TestFlight, then once processed sent for App Review), the
+# version the tag's and the build number this workflow's run (both stores
+# want it higher each time). By hand (Actions > release > Run workflow) it
+# does the same with --dry-run: built, signed, the stores' APIs reached,
+# what would change listed, nothing uploaded; the way to try the secrets
+# before a real release.
 #
 # Secrets (Settings > Secrets and variables > Actions; README: Publishing):
 #   HELDER_ANDROID_UPLOAD_IDENTITY  Play's upload key: its certificate and private key in one PEM
@@ -12,6 +15,8 @@
 #   HELDER_ASC_API_KEY              App Store Connect's API key: JSON of key_id, issuer_id and private_key
 #                                   (the .p8's text); or HELDER_ASC_KEY_ID, HELDER_ASC_ISSUER_ID, HELDER_ASC_KEY
 #   HELDER_IOS_PROFILE              optional: the App Store provisioning profile, base64 (else fetched with the API key)
+#   HELDER_STORE_EMAIL, HELDER_REVIEW_FIRST_NAME, HELDER_REVIEW_LAST_NAME, HELDER_REVIEW_PHONE
+#                                   the contacts helder.json's listing names (${NAME}): Play's, App Review's
 # Google Play, one of:
 #   variables GCP_WORKLOAD_IDENTITY_PROVIDER and GCP_SERVICE_ACCOUNT  Workload Identity Federation (preferred: no key)
 #   secret HELDER_PLAY_SERVICE_ACCOUNT                                a service account's JSON key
@@ -55,6 +60,8 @@ jobs:
         with:
           node-version: 24
       - run: npm ci
+      # (the stories drawn headless on Mesa's llvmpipe: the screenshots)
+      - run: sudo apt-get update -qq && sudo apt-get install -qqy --no-install-recommends fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri
       - name: The version (the tag's) and the build number (this run's)
         run: node .github/scripts/version.mjs "${{ github.ref_name }}" "$(( ${{ github.run_number }} + 100 ))"
       - name: Google's access token (Workload Identity Federation)
@@ -66,28 +73,48 @@ jobs:
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
           token_format: access_token
           access_token_scopes: https://www.googleapis.com/auth/androidpublisher
-      - name: Google Play, internal track
+      - name: Google Play's listing
+        env:
+          GOOGLE_OAUTH_ACCESS_TOKEN: ${{ steps.google.outputs.access_token }}
+          HELDER_PLAY_SERVICE_ACCOUNT: ${{ secrets.HELDER_PLAY_SERVICE_ACCOUNT }}
+          HELDER_STORE_EMAIL: ${{ secrets.HELDER_STORE_EMAIL }}
+        run: npx helder publish --listing --play $DRY
+      - name: Google Play, production
         env:
           HELDER_ANDROID_UPLOAD_IDENTITY: ${{ secrets.HELDER_ANDROID_UPLOAD_IDENTITY }}
           GOOGLE_OAUTH_ACCESS_TOKEN: ${{ steps.google.outputs.access_token }}
           HELDER_PLAY_SERVICE_ACCOUNT: ${{ secrets.HELDER_PLAY_SERVICE_ACCOUNT }}
-        run: npx helder publish --play --track internal $DRY
+        run: npx helder publish --play --track production $DRY
 
   testflight:
     needs: test
     # (Linux: helder builds and signs the .ipa without a Mac or Xcode, the
     # runtime objects an iPhone's build links fetched from hxmc's release)
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    # (App Review: sent once App Store Connect has processed the build, minutes to an hour)
+    timeout-minutes: 100
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
       - run: npm ci
+      # (the stories drawn headless on Mesa's llvmpipe: the screenshots)
+      - run: sudo apt-get update -qq && sudo apt-get install -qqy --no-install-recommends fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri
       - name: The version (the tag's) and the build number (this run's)
         run: node .github/scripts/version.mjs "${{ github.ref_name }}" "$(( ${{ github.run_number }} + 100 ))"
-      - name: TestFlight
+      - name: The App Store's listing
+        env:
+          HELDER_ASC_API_KEY: ${{ secrets.HELDER_ASC_API_KEY }}
+          HELDER_ASC_KEY_ID: ${{ secrets.HELDER_ASC_KEY_ID }}
+          HELDER_ASC_ISSUER_ID: ${{ secrets.HELDER_ASC_ISSUER_ID }}
+          HELDER_ASC_KEY: ${{ secrets.HELDER_ASC_KEY }}
+          HELDER_STORE_EMAIL: ${{ secrets.HELDER_STORE_EMAIL }}
+          HELDER_REVIEW_FIRST_NAME: ${{ secrets.HELDER_REVIEW_FIRST_NAME }}
+          HELDER_REVIEW_LAST_NAME: ${{ secrets.HELDER_REVIEW_LAST_NAME }}
+          HELDER_REVIEW_PHONE: ${{ secrets.HELDER_REVIEW_PHONE }}
+        run: npx helder publish --listing --testflight $DRY
+      - name: TestFlight, then App Review
         env:
           HELDER_IOS_IDENTITY: ${{ secrets.HELDER_IOS_IDENTITY }}
           HELDER_IOS_PROFILE: ${{ secrets.HELDER_IOS_PROFILE }}
@@ -95,4 +122,4 @@ jobs:
           HELDER_ASC_KEY_ID: ${{ secrets.HELDER_ASC_KEY_ID }}
           HELDER_ASC_ISSUER_ID: ${{ secrets.HELDER_ASC_ISSUER_ID }}
           HELDER_ASC_KEY: ${{ secrets.HELDER_ASC_KEY }}
-        run: npx helder publish --testflight $DRY
+        run: npx helder publish --testflight --submit $DRY

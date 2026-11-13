@@ -2,7 +2,7 @@
 
 # Little Skies
 
-Mini golf on three islands in the sky: eighteen holes, each island
+Mini golf: eighteen holes on three floating islands, each island
 bringing in its own pieces and then twisting them, so that on the later
 holes the puzzle is finding the route, not only aiming. Drag back from the
 ball, let go to shoot.

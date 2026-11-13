@@ -57,8 +57,21 @@ class LittleSkies implements Markup {
 			</Scene>
 			<Hud game={game}/>
 			<view position="absolute" left={0} top={0} right={0} bottom={0} pointer-events="none" background={game.sky()}
-				opacity={game.curtain() ? 1.0 : 0.0} transition="opacity 0.28s ease-in-out"/>
+				opacity={game.curtain() || !game.ready() ? 1.0 : 0.0} transition="opacity 0.28s ease-in-out" align-items="center" justify="center">
+				<Show when={!game.ready()}>
+					<Loading game={game}/>
+				</Show>
+			</view>
 		</view>;
+
+	// the loading curtain's three dots, pulsing in turn
+	static function Loading(props:{game:Game}):View {
+		var g = props.game;
+		function dot(i:Int):View
+			return <view width={10} height={10} radius={5} background={LETTERS[g.island()]}
+				opacity={0.25 + 0.6 * Math.max(0, Math.sin(g.pulse() * 5 - i * 0.9))}/>;
+		return <view direction="row" column-gap={10}>{dot(0)}{dot(1)}{dot(2)}</view>;
+	}
 
 	// (the pop-ins: from small and clear when first drawn, eased by their transition)
 	static final sheet:StyleSheet = {
@@ -167,7 +180,10 @@ class LittleSkies implements Markup {
 					<text font-size={15} font-weight={700} color={powerColor(g.power())}>{Math.round(g.power() * 100) + "%"}</text>
 				</view>
 			</Show>
-			<Show when={g.screen() == "title"}>
+			<Show when={g.screen() == "title" && !g.ready()}>
+				<Title game={g}/>
+			</Show>
+			<Show when={g.screen() == "title" && g.ready()}>
 				<Title game={g}/>
 			</Show>
 			<Show when={g.screen() == "menu"}>
@@ -185,7 +201,7 @@ class LittleSkies implements Markup {
 		helder.ui.Svg.parse(helder.asset.Asset.embed("brand/title-haze-copperwind.svg").toString()),
 		helder.ui.Svg.parse(helder.asset.Asset.embed("brand/title-haze-lanternwater.svg").toString())
 	];
-	// the letters' colour on each island's sky (the subtitle's, at 82%)
+	// the letters' colour on each island's sky (the loading dots')
 	static final LETTERS = ["#27314f", "#55263a", "#fff3df"];
 	// the lockup's size (brand/title-*.svg's viewBox)
 	static inline var LOCKUP_W = 428.7;
@@ -200,7 +216,8 @@ class LittleSkies implements Markup {
 
 	// the title over the hole turning slowly behind it: the lockup centred,
 	// on its side about 38% of the screen's height with its top 4% down, upright
-	// 61% of its width, 9% down; the subtitle 14 points under it
+	// 61% of its width, 9% down (drawn first behind the loading curtain, its
+	// glyphs and pictures made, then again once ready: its entrance smooth)
 	static function Title(props:{game:Game}):View {
 		var g = props.game;
 		var total = memo(() -> {
@@ -219,7 +236,6 @@ class LittleSkies implements Markup {
 					<image position="absolute" left={-width() / 2} top={-height() * 0.35} width={width() * 2} height={height() * 1.7} src={hazes[g.island()]}/>
 					<image position="absolute" left={0} top={0} width={width()} height={height()} src={lockups[g.island()]}/>
 				</view>
-				<text margin-top={14} font-size={g.wide() ? 18 : 16} font-weight={700} color={LETTERS[g.island()]} opacity={0.82} text-align="center">Mini golf on three islands in the sky</text>
 			</view>
 			<view slot="rise" transition="opacity 0.5s ease-out, transform 0.6s ease-out" align-items="center" row-gap={12}>
 				<Button tag="play" label={g.best()[0] > 0 ? "Play hole " + (g.holeIndex() + 1) : "Play"} primary wide onPress={g.start}/>

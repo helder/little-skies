@@ -1,0 +1,11 @@
+Eighteen holes on three floating islands, and each island brings its own pieces: turnstiles and bumpers, bridges that crumble under the ball, boosters up the slopes, wind, lifts, portals and switches. The later holes twist them together, so the puzzle is finding the route, not only the aim.
+
+Drag back from the ball and let go. A line shows where the shot will go, bounces included, so every putt is a choice you can see.
+
+- 18 handcrafted holes across three islands
+- Real 3D physics: slopes, ramps, rebounds and drops off the edge
+- Birds, clouds and light that change from island to island
+- Play at your own pace: no timers, no ads, no accounts
+- Works offline
+
+Little Skies is made with helder, and its source is open: https://github.com/helder/little-skies
