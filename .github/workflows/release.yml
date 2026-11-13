@@ -56,7 +56,7 @@ jobs:
           node-version: 24
       - run: npm ci
       - name: The version (the tag's) and the build number (this run's)
-        run: node .github/scripts/version.mjs "${{ github.ref_name }}" "${{ github.run_number }}"
+        run: node .github/scripts/version.mjs "${{ github.ref_name }}" "$(( ${{ github.run_number }} + 100 ))"
       - name: Google's access token (Workload Identity Federation)
         if: vars.GCP_WORKLOAD_IDENTITY_PROVIDER != ''
         id: google
@@ -86,7 +86,7 @@ jobs:
           node-version: 24
       - run: npm ci
       - name: The version (the tag's) and the build number (this run's)
-        run: node .github/scripts/version.mjs "${{ github.ref_name }}" "${{ github.run_number }}"
+        run: node .github/scripts/version.mjs "${{ github.ref_name }}" "$(( ${{ github.run_number }} + 100 ))"
       - name: TestFlight
         env:
           HELDER_IOS_IDENTITY: ${{ secrets.HELDER_IOS_IDENTITY }}
