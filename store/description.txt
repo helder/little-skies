@@ -1,8 +1,9 @@
-Eighteen holes on three floating islands, and each island brings its own pieces: turnstiles and bumpers, bridges that crumble under the ball, boosters up the slopes, wind, lifts, portals and switches. The later holes twist them together, so the puzzle is finding the route, not only the aim.
+Thirty-six holes on four floating islands, and each island brings its own pieces: bumpers and slopes, turnstiles, boosters, wind and lifts, portals, switches and bridges that crumble under the ball, and sheets of ice where the ball hardly slows. Each island starts gentle, then twists its pieces together with the ones before, and ends on a hard hole: some are skill shots, some are puzzles where the trick is finding the route.
 
 Drag back from the ball and let go. A line shows where the shot will go, bounces included, so every putt is a choice you can see.
 
-- 18 handcrafted holes across three islands
+- 36 handcrafted holes across four islands, from first putts to puzzles
+- Three stars for par or better: every island has its own scorecard
 - Real 3D physics: slopes, ramps, rebounds and drops off the edge
 - Birds, clouds and light that change from island to island
 - Play at your own pace: no timers, no ads, no accounts

@@ -36,7 +36,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 185x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "16"
+            TextNode#text 29,25 18x22 "25"
           Node#view 66,19 119x35
             TextNode#text 66,19 119x13 "LANTERNWATER"
             TextNode#text 66,32 119x22 "Brittle Bridge"
@@ -44,6 +44,34 @@ Node#root 0,0 390x844
           Node#view 266,18 20x39
             TextNode#text 266,18 20x14 "PAR"
             TextNode#text 271,32 10x25 "4"
+          Node#view 300,18 1x39
+          Node#view 315,18 45x39
+            TextNode#text 315,18 45x14 "STROKES"
+            TextNode#strokes 332,32 10x25 "1"
+      Node#view 14,63 362x765
+      Node#view 14,828 362x0
+    Node#view 0,0 390x844
+      Node#view 170,417 50x10
+        Node#view 170,417 10x10
+        Node#view 190,417 10x10
+        Node#view 210,417 10x10
+
+--- story Holes/Icefall: Holes/Icefall (26 lines)
+Node#root 0,0 390x844
+  Node#view 0,0 390x844
+    SceneBox#scene 0,0 390x844
+    Node#view 0,0 390x844
+      Node#view 14,12 362x51
+        Node#menu 14,12 170x48
+          Node#view 20,18 36x36
+            TextNode#text 29,25 18x22 "35"
+          Node#view 66,19 104x35
+            TextNode#text 66,19 104x13 "FROSTGLASS PEAKS"
+            TextNode#text 66,32 104x22 "Icefall"
+        Node#score 250,12 126x51
+          Node#view 266,18 20x39
+            TextNode#text 266,18 20x14 "PAR"
+            TextNode#text 271,32 10x25 "3"
           Node#view 300,18 1x39
           Node#view 315,18 45x39
             TextNode#text 315,18 45x14 "STROKES"
@@ -64,7 +92,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 144x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "18"
+            TextNode#text 29,25 18x22 "27"
           Node#view 66,19 78x35
             TextNode#text 66,19 78x13 "LANTERNWATER"
             TextNode#text 66,32 78x22 "Moonrise"
@@ -75,7 +103,7 @@ Node#root 0,0 390x844
           Node#view 300,18 1x39
           Node#view 315,18 45x39
             TextNode#text 315,18 45x14 "STROKES"
-            TextNode#strokes 332,32 10x25 "1"
+            TextNode#strokes 332,32 10x25 "2"
       Node#view 14,63 362x765
       Node#view 14,828 362x0
     Node#view 0,0 390x844
@@ -120,7 +148,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 177x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "12"
+            TextNode#text 29,25 18x22 "14"
           Node#view 66,19 111x35
             TextNode#text 66,19 111x13 "COPPERWIND CLIFFS"
             TextNode#text 66,32 111x22 "Roundabout"
@@ -150,7 +178,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 185x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "13"
+            TextNode#text 29,25 18x22 "19"
           Node#view 66,19 119x35
             TextNode#text 66,19 119x13 "LANTERNWATER"
             TextNode#text 66,32 119x22 "Skipping Stone"
@@ -178,7 +206,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 177x48
           Node#view 20,18 36x36
-            TextNode#text 34,25 9x22 "8"
+            TextNode#text 29,25 18x22 "13"
           Node#view 66,19 111x35
             TextNode#text 66,19 111x13 "COPPERWIND CLIFFS"
             TextNode#text 66,32 111x22 "Turnstile"
@@ -192,6 +220,344 @@ Node#root 0,0 390x844
             TextNode#strokes 332,32 10x25 "1"
       Node#view 14,63 362x765
       Node#view 14,828 362x0
+    Node#view 0,0 390x844
+      Node#view 170,417 50x10
+        Node#view 170,417 10x10
+        Node#view 190,417 10x10
+        Node#view 210,417 10x10
+
+--- story Screens/Scorecard: Screens/Scorecard (336 lines)
+Node#root 0,0 390x844
+  Node#view 0,0 390x844
+    SceneBox#scene 0,0 390x844
+    Node#view 0,0 390x844
+      Node#view 14,12 362x816
+      Node#holes 0,0 390x844
+        Node#view 10,135 370x574
+          Node#view 24,149 342x49
+            Node#view 24,149 108x49
+              TextNode#text 24,149 108x30 "Scorecard"
+              Node#view 24,181 108x17
+                ImageNode#image 24,182 15x15
+                TextNode#text 43,181 63x17 "32 of 108"
+            Node#close 276,150 90x47
+              TextNode#text 300,163 42x21 "Close"
+          Node#tabs 24,208 342x45
+            Node#island-1 24,208 81x45
+              TextNode#text 32,215 66x15 "Meadowdrift"
+              Node#view 43,232 43x14
+                ImageNode#image 43,233 12x12
+                TextNode#text 58,232 28x14 "21/27"
+            Node#island-2 111,208 81x45
+              TextNode#text 122,215 60x15 "Copperwind"
+              Node#view 130,232 43x14
+                ImageNode#image 130,233 12x12
+                TextNode#text 145,232 28x14 "11/27"
+            Node#island-3 198,208 81x45
+              TextNode#text 203,215 72x15 "Lanternwater"
+              ImageNode#image 232,232 14x14
+            Node#island-4 285,208 81x45
+              TextNode#text 296,215 60x15 "Frostglass"
+              ImageNode#image 319,232 14x14
+          Node#pager 24,263 342x416
+            Node#view 24,263 342x416
+              Node#page-0 -318,263 342x416
+                Node#view -318,263 342x416
+                  Node#banner-1 -316,265 338x110
+                    TextNode#text -302,277 310x28 "Meadowdrift"
+                    TextNode#text -302,311 310x16 "Soft greens on a spring breeze"
+                    Node#view -302,333 310x8
+                      Node#view -302,333 241x8
+                    Node#view -302,347 310x16
+                      Node#view -302,347 70x16
+                        ImageNode#image -302,348 14x14
+                        TextNode#text -284,347 52x16 "21 of 27"
+                      TextNode#text -208,348 216x15 "9 of 9 holes · 27 strokes for par 21"
+                  Node#view -316,385 338x290
+                    Node#hole-1 -316,385 107x92
+                      Node#view -267,393 10x25
+                        TextNode#text -267,393 10x25 "1"
+                      TextNode#text -292,421 60x13 "First Putt"
+                      Node#view -287,437 50x16
+                        ImageNode#image -287,437 16x16
+                        ImageNode#image -270,437 16x16
+                        ImageNode#image -253,437 16x16
+                      TextNode#text -301,456 77x13 "best 2 · par 2"
+                    Node#hole-2 -201,385 108x92
+                      Node#view -152,393 10x25
+                        TextNode#text -152,393 10x25 "2"
+                      TextNode#text -171,421 48x13 "The Bend"
+                      Node#view -172,437 50x16
+                        ImageNode#image -172,437 16x16
+                        ImageNode#image -155,437 16x16
+                        ImageNode#image -138,437 16x16
+                      TextNode#text -186,456 77x13 "best 3 · par 2"
+                    Node#hole-3 -86,385 108x92
+                      Node#view -37,393 10x25
+                        TextNode#text -37,393 10x25 "3"
+                      TextNode#text -50,421 36x13 "Uphill"
+                      Node#view -57,437 50x16
+                        ImageNode#image -57,437 16x16
+                        ImageNode#image -40,437 16x16
+                        ImageNode#image -23,437 16x16
+                      TextNode#text -70,456 77x13 "best 2 · par 2"
+                    Node#hole-4 -316,484 107x92
+                      Node#view -267,492 10x25
+                        TextNode#text -267,492 10x25 "4"
+                      TextNode#text -283,520 42x13 "Pinball"
+                      Node#view -287,536 50x16
+                        ImageNode#image -287,536 16x16
+                        ImageNode#image -270,536 16x16
+                        ImageNode#image -253,536 16x16
+                      TextNode#text -301,555 77x13 "best 4 · par 2"
+                    Node#hole-5 -201,484 108x92
+                      Node#view -152,492 10x25
+                        TextNode#text -152,492 10x25 "5"
+                      TextNode#text -189,520 84x13 "Sandy Shortcut"
+                      Node#view -172,536 50x16
+                        ImageNode#image -172,536 16x16
+                        ImageNode#image -155,536 16x16
+                        ImageNode#image -138,536 16x16
+                      TextNode#text -186,555 77x13 "best 2 · par 2"
+                    Node#hole-6 -86,484 108x92
+                      Node#view -37,492 10x25
+                        TextNode#text -37,492 10x25 "6"
+                      TextNode#text -56,520 48x13 "Terraces"
+                      Node#view -57,536 50x16
+                        ImageNode#image -57,536 16x16
+                        ImageNode#image -40,536 16x16
+                        ImageNode#image -23,536 16x16
+                      TextNode#text -70,555 77x13 "best 4 · par 3"
+                    Node#hole-7 -316,583 107x92
+                      Node#view -267,591 10x25
+                        TextNode#text -267,591 10x25 "7"
+                      TextNode#text -286,619 48x13 "The Leap"
+                      Node#view -287,635 50x16
+                        ImageNode#image -287,635 16x16
+                        ImageNode#image -270,635 16x16
+                        ImageNode#image -253,635 16x16
+                      TextNode#text -301,654 77x13 "best 2 · par 2"
+                    Node#hole-8 -201,583 108x92
+                      Node#view -152,591 10x25
+                        TextNode#text -152,591 10x25 "8"
+                      TextNode#text -162,619 30x13 "Carom"
+                      Node#view -172,635 50x16
+                        ImageNode#image -172,635 16x16
+                        ImageNode#image -155,635 16x16
+                        ImageNode#image -138,635 16x16
+                      TextNode#text -186,654 77x13 "best 5 · par 3"
+                    Node#hole-9 -86,583 108x92
+                      Node#view -37,591 10x25
+                        TextNode#text -37,591 10x25 "9"
+                      TextNode#text -65,619 66x13 "Hilltop Hop"
+                      Node#view -57,635 50x16
+                        ImageNode#image -57,635 16x16
+                        ImageNode#image -40,635 16x16
+                        ImageNode#image -23,635 16x16
+                      TextNode#text -70,654 77x13 "best 3 · par 3"
+              Node#page-1 24,263 342x416
+                Node#view 24,263 342x416
+                  Node#banner-2 26,265 338x110
+                    TextNode#text 40,277 310x28 "Copperwind Cliffs"
+                    TextNode#text 40,311 310x16 "Gears, gusts and golden light"
+                    Node#view 40,333 310x8
+                      Node#view 40,333 126x8
+                    Node#view 40,347 310x16
+                      Node#view 40,347 70x16
+                        ImageNode#image 40,348 14x14
+                        TextNode#text 58,347 52x16 "11 of 27"
+                      TextNode#text 224,348 126x15 "5 of 9 holes · par 22"
+                  Node#view 26,385 338x290
+                    Node#hole-10 26,385 107x92
+                      Node#view 70,393 20x25
+                        TextNode#text 70,393 20x25 "10"
+                      TextNode#text 47,421 66x13 "Booster Run"
+                      Node#view 55,437 50x16
+                        ImageNode#image 55,437 16x16
+                        ImageNode#image 72,437 16x16
+                        ImageNode#image 89,437 16x16
+                      TextNode#text 41,456 77x13 "best 3 · par 2"
+                    Node#hole-11 141,385 108x92
+                      Node#view 185,393 20x25
+                        TextNode#text 185,393 20x25 "11"
+                      TextNode#text 171,421 48x13 "Lift Off"
+                      Node#view 170,437 50x16
+                        ImageNode#image 170,437 16x16
+                        ImageNode#image 187,437 16x16
+                        ImageNode#image 204,437 16x16
+                      TextNode#text 156,456 77x13 "best 2 · par 2"
+                    Node#hole-12 256,385 108x92
+                      Node#view 300,393 20x25
+                        TextNode#text 300,393 20x25 "12"
+                      TextNode#text 289,421 42x13 "Sliders"
+                      Node#view 285,437 50x16
+                        ImageNode#image 285,437 16x16
+                        ImageNode#image 302,437 16x16
+                        ImageNode#image 319,437 16x16
+                      TextNode#text 272,456 77x13 "best 4 · par 2"
+                    Node#hole-13 26,484 107x92
+                      Node#view 70,492 20x25
+                        TextNode#text 70,492 20x25 "13"
+                      TextNode#text 53,520 54x13 "Turnstile"
+                      Node#view 55,536 50x16
+                        ImageNode#image 55,536 16x16
+                        ImageNode#image 72,536 16x16
+                        ImageNode#image 89,536 16x16
+                      TextNode#text 41,555 77x13 "best 2 · par 2"
+                    Node#hole-14 141,484 108x92
+                      Node#view 185,492 20x25
+                        TextNode#text 185,492 20x25 "14"
+                      TextNode#text 165,520 60x13 "Roundabout"
+                      Node#view 170,536 50x16
+                        ImageNode#image 170,536 16x16
+                        ImageNode#image 187,536 16x16
+                        ImageNode#image 204,536 16x16
+                      TextNode#text 156,555 77x13 "best 4 · par 3"
+                    Node#hole-15 256,484 108x92
+                      Node#view 300,492 20x25
+                        TextNode#text 300,492 20x25 "15"
+                      TextNode#text 283,520 54x13 "Crosswind"
+                      Node#view 285,536 50x16
+                        ImageNode#image 285,536 16x16
+                        ImageNode#image 302,536 16x16
+                        ImageNode#image 319,536 16x16
+                      TextNode#text 296,555 28x13 "par 2"
+                    Node#hole-16 26,583 107x92
+                      Node#view 60,608 39x25
+                        TextNode#text 60,608 20x25 "16"
+                        ImageNode#image 85,613 14x14
+                      TextNode#text 59,636 42x15 "Gearbox"
+                    Node#hole-17 141,583 108x92
+                      Node#view 175,608 39x25
+                        TextNode#text 175,608 20x25 "17"
+                        ImageNode#image 200,613 14x14
+                      TextNode#text 174,636 42x15 "Updraft"
+                    Node#hole-18 256,583 108x92
+                      Node#view 291,608 39x25
+                        TextNode#text 291,608 20x25 "18"
+                        ImageNode#image 316,613 14x14
+                      TextNode#text 283,636 54x15 "Clockwork"
+              Node#page-2 366,263 342x416
+                Node#view 366,263 342x416
+                  Node#banner-3 368,265 338x110
+                    TextNode#text 382,277 310x28 "Lanternwater"
+                    TextNode#text 382,311 310x16 "Moonlit pools and puzzling doors"
+                    Node#view 382,333 310x8
+                      Node#view 382,333 0x8
+                    Node#view 382,347 310x16
+                      Node#view 382,347 64x16
+                        ImageNode#image 382,348 14x14
+                        TextNode#text 400,347 46x16 "0 of 27"
+                      TextNode#text 566,348 126x15 "0 of 9 holes · par 28"
+                  Node#view 368,385 338x290
+                    Node#hole-19 368,385 107x92
+                      Node#view 402,410 39x25
+                        TextNode#text 402,410 20x25 "19"
+                        ImageNode#image 427,415 14x14
+                      TextNode#text 380,438 84x15 "Skipping Stone"
+                    Node#hole-20 483,385 108x92
+                      Node#view 517,410 39x25
+                        TextNode#text 517,410 20x25 "20"
+                        ImageNode#image 542,415 14x14
+                      TextNode#text 513,438 48x15 "Wormhole"
+                    Node#hole-21 598,385 108x92
+                      Node#view 633,410 39x25
+                        TextNode#text 633,410 20x25 "21"
+                        ImageNode#image 658,415 14x14
+                      TextNode#text 613,438 78x15 "Lantern Falls"
+                    Node#hole-22 368,484 107x92
+                      Node#view 402,509 39x25
+                        TextNode#text 402,509 20x25 "22"
+                        ImageNode#image 427,514 14x14
+                      TextNode#text 386,537 72x15 "Mirror Pools"
+                    Node#hole-23 483,484 108x92
+                      Node#view 517,509 39x25
+                        TextNode#text 517,509 20x25 "23"
+                        ImageNode#image 542,514 14x14
+                      TextNode#text 504,537 66x15 "Flip Switch"
+                    Node#hole-24 598,484 108x92
+                      Node#view 633,509 39x25
+                        TextNode#text 633,509 20x25 "24"
+                        ImageNode#image 658,514 14x14
+                      TextNode#text 625,537 54x15 "Two Doors"
+                    Node#hole-25 368,583 107x92
+                      Node#view 402,608 39x25
+                        TextNode#text 402,608 20x25 "25"
+                        ImageNode#image 427,613 14x14
+                      TextNode#text 380,636 84x15 "Brittle Bridge"
+                    Node#hole-26 483,583 108x92
+                      Node#view 517,608 39x25
+                        TextNode#text 517,608 20x25 "26"
+                        ImageNode#image 542,613 14x14
+                      TextNode#text 513,636 48x15 "Lockstep"
+                    Node#hole-27 598,583 108x92
+                      Node#view 633,608 39x25
+                        TextNode#text 633,608 20x25 "27"
+                        ImageNode#image 658,613 14x14
+                      TextNode#text 628,636 48x15 "Moonrise"
+              Node#page-3 708,263 342x416
+                Node#view 708,263 342x416
+                  Node#banner-4 710,265 338x110
+                    TextNode#text 724,277 310x28 "Frostglass Peaks"
+                    TextNode#text 724,311 310x16 "Ice sheets under a pale winter sun"
+                    Node#view 724,333 310x8
+                      Node#view 724,333 0x8
+                    Node#view 724,347 310x16
+                      Node#view 724,347 64x16
+                        ImageNode#image 724,348 14x14
+                        TextNode#text 742,347 46x16 "0 of 27"
+                      TextNode#text 908,348 126x15 "0 of 9 holes · par 23"
+                  Node#view 710,385 338x290
+                    Node#hole-28 710,385 107x92
+                      Node#view 744,410 39x25
+                        TextNode#text 744,410 20x25 "28"
+                        ImageNode#image 769,415 14x14
+                      TextNode#text 731,438 66x15 "First Frost"
+                    Node#hole-29 825,385 108x92
+                      Node#view 859,410 39x25
+                        TextNode#text 859,410 20x25 "29"
+                        ImageNode#image 884,415 14x14
+                      TextNode#text 855,438 48x15 "Ice Rink"
+                    Node#hole-30 940,385 108x92
+                      Node#view 975,410 39x25
+                        TextNode#text 975,410 20x25 "30"
+                        ImageNode#image 1000,415 14x14
+                      TextNode#text 973,438 42x15 "Curling"
+                    Node#hole-31 710,484 107x92
+                      Node#view 744,509 39x25
+                        TextNode#text 744,509 20x25 "31"
+                        ImageNode#image 769,514 14x14
+                      TextNode#text 725,537 78x15 "Frozen Portal"
+                    Node#hole-32 825,484 108x92
+                      Node#view 859,509 39x25
+                        TextNode#text 859,509 20x25 "32"
+                        ImageNode#image 884,514 14x14
+                      TextNode#text 855,537 48x15 "Snowgate"
+                    Node#hole-33 940,484 108x92
+                      Node#view 975,509 39x25
+                        TextNode#text 975,509 20x25 "33"
+                        ImageNode#image 1000,514 14x14
+                      TextNode#text 955,537 78x15 "Glacier Slide"
+                    Node#hole-34 710,583 107x92
+                      Node#view 744,608 39x25
+                        TextNode#text 744,608 20x25 "34"
+                        ImageNode#image 769,613 14x14
+                      TextNode#text 740,636 48x15 "Thin Ice"
+                    Node#hole-35 825,583 108x92
+                      Node#view 859,608 39x25
+                        TextNode#text 859,608 20x25 "35"
+                        ImageNode#image 884,613 14x14
+                      TextNode#text 858,636 42x15 "Icefall"
+                    Node#hole-36 940,583 108x92
+                      Node#view 975,608 39x25
+                        TextNode#text 975,608 20x25 "36"
+                        ImageNode#image 1000,613 14x14
+                      TextNode#text 955,636 78x15 "Aurora Summit"
+          Node#view 24,689 342x6
+            Node#view 168,689 6x6
+            Node#view 180,689 18x6
+            Node#view 204,689 6x6
+            Node#view 216,689 6x6
     Node#view 0,0 390x844
       Node#view 170,417 50x10
         Node#view 170,417 10x10

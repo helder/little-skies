@@ -169,6 +169,14 @@ class Creatures {
 					add(GLIDER, CIRCLE, i);
 				for (i in 0...7)
 					add(SWIFT, CIRCLE, i);
+			case 3:
+				// (tits on the rails, gulls gliding over the ice, a far flock)
+				for (i in 0...2)
+					sitter(TIT, tee);
+				for (i in 0...2)
+					add(GLIDER, CIRCLE, i);
+				for (i in 0...8)
+					add(FAR, CIRCLE, i);
 			case _:
 				// (the heron on a rail, bats out past the edges, moths at the lanterns)
 				sitter(HERON, tee);
