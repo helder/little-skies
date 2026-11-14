@@ -10,7 +10,8 @@ ball, let go to shoot.
 
 A [helder](https://github.com/helder/helder) game, in Haxe: one program
 for the web, Android, iOS and the desktop. Play it at
-https://little-skies.helder.run.
+https://little-skies.helder.run, or get it on
+[Google Play](https://play.google.com/store/apps/details?id=build.helder.littleskies).
 
 | | |
 |---|---|

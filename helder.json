@@ -78,7 +78,8 @@
         "background": "brand/icon-android-background.svg",
         "monochrome": "brand/icon-monochrome.svg"
       },
-      "publish": [{"to": "play", "track": "internal"}]
+      "publish": [{"to": "play", "track": "internal"}],
+      "store": "https://play.google.com/store/apps/details?id=build.helder.littleskies"
     },
     "ios": {
       "nonExemptEncryption": false,
