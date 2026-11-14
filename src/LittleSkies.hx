@@ -27,6 +27,8 @@ class LittleSkies implements Markup {
 	static inline var MUTED = "#7d8597";
 	static inline var STAR = "#ffb703";
 
+	// (Loose: the markup's hole for view(game) is passed on as a Null<Any>, helder.view's code, which Strict refuses)
+	@:nullSafety(Loose)
 	static function main() {
 		fonts();
 		var game = new Game();
@@ -50,6 +52,11 @@ class LittleSkies implements Markup {
 	}
 
 	// the game's screen: the island's sky, the <Scene>, the HUD, the curtain
+	// (Off: <OrbitControls> in the <Scene> is made by a factory helder.view's
+	// markup types Void->Null<Any> and passes on as Void->Any, which no mode
+	// of null safety takes; the markup's expressions are the game's, all
+	// typed non-null)
+	@:nullSafety(Off)
 	public static function view(game:Game):View
 		return <view grow={1} background={game.sky()} font-family="Nunito" color={INK}>
 			<Scene grow={1} world={game.world} camera={game.camera} hdr animate setup={game.setup} ref={game.attach}>

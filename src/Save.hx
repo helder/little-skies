@@ -34,7 +34,7 @@ class Save {
 			for (i in 0...Std.int(Math.min(parts.length, LEGACY.length)))
 				byName.set(LEGACY[i], Std.parseInt(parts[i]) ?? 0);
 		}
-		return [for (h in holes) byName.exists(h.name) ? byName.get(h.name) : 0];
+		return [for (h in holes) byName.get(h.name) ?? 0];
 	}
 
 	public function write(holes:Array<Hole>, best:Array<Int>)

@@ -10,7 +10,7 @@ import helder.view.View;
 // by frame (Controls.play) to its moment, then settled. In this order on
 // helder.run's page. In the studio each runs live.
 // (Turnstile: Google Play's feature graphic too, feature: true)
-final turnstile = story({
+@:nullSafety(Strict) final turnstile = story({
 	name: "Holes/Turnstile",
 	store: true,
 	caption: "36 holes, four islands",
@@ -18,27 +18,27 @@ final turnstile = story({
 	render: c -> round(c, "Turnstile")
 });
 
-final roundabout = story({
+@:nullSafety(Strict) final roundabout = story({
 	name: "Holes/Roundabout",
 	store: true,
 	caption: "See each shot's path",
 	render: c -> aim(c, "Roundabout", 0.18, -1, 0.8)
 });
 
-final brittle = story({name: "Holes/Brittle Bridge", store: true, caption: "Bridges that crumble", render: c -> round(c, "Brittle Bridge")});
+@:nullSafety(Strict) final brittle = story({name: "Holes/Brittle Bridge", store: true, caption: "Bridges that crumble", render: c -> round(c, "Brittle Bridge")});
 
-final booster = story({name: "Holes/Booster Run", store: true, caption: "Boosters up the slopes", render: c -> round(c, "Booster Run")});
+@:nullSafety(Strict) final booster = story({name: "Holes/Booster Run", store: true, caption: "Boosters up the slopes", render: c -> round(c, "Booster Run")});
 
-final moonrise = story({name: "Holes/Moonrise", store: true, caption: "Portals and switches", render: c -> round(c, "Moonrise")});
+@:nullSafety(Strict) final moonrise = story({name: "Holes/Moonrise", store: true, caption: "Portals and switches", render: c -> round(c, "Moonrise")});
 
-final pinball = story({name: "Holes/Pinball", store: true, caption: "Bumpers that kick back", render: c -> round(c, "Pinball")});
+@:nullSafety(Strict) final pinball = story({name: "Holes/Pinball", store: true, caption: "Bumpers that kick back", render: c -> round(c, "Pinball")});
 
-final skipping = story({name: "Holes/Skipping Stone", store: true, caption: "Sink it in one", render: c -> round(c, "Skipping Stone")});
+@:nullSafety(Strict) final skipping = story({name: "Holes/Skipping Stone", store: true, caption: "Sink it in one", render: c -> round(c, "Skipping Stone")});
 
-final icefall = story({name: "Holes/Icefall", store: true, caption: "Ice, waterfalls, and the ball keeps rolling", render: c -> round(c, "Icefall")});
+@:nullSafety(Strict) final icefall = story({name: "Holes/Icefall", store: true, caption: "Ice, waterfalls, and the ball keeps rolling", render: c -> round(c, "Icefall")});
 
 // the scorecard over hole 15, fourteen holes played (par, a bogey, par, a double bogey, in turn)
-final scorecard = story({
+@:nullSafety(Strict) final scorecard = story({
 	name: "Screens/Scorecard",
 	render: c -> {
 		var g = game(c);
@@ -48,25 +48,28 @@ final scorecard = story({
 });
 
 // (the moment: seconds into the hole)
-private final MOMENT = 4.0;
+@:nullSafety(Strict) private final MOMENT = 4.0;
 
 // a hole (by its name) with its recorded round playing
-private function round(c:Controls, name:String):View {
+@:nullSafety(Strict) private function round(c:Controls, name:String):View {
 	var g = game(c);
-	var i = Rounds.indexOf(name);
-	g.demo(i, Rounds.of(i));
+	var i = Rounds.indexOf(name), shots = Rounds.of(i);
+	if (shots == null) throw 'no recorded round for "$name"';
+	g.demo(i, shots);
 	return LittleSkies.view(g);
 }
 
 // a hole (by its name) with an aim held: its direction (dx, dz) and power (0 to 1), the path shown
-private function aim(c:Controls, name:String, dx:Float, dz:Float, power:Float):View {
+@:nullSafety(Strict) private function aim(c:Controls, name:String, dx:Float, dz:Float, power:Float):View {
 	var g = game(c);
-	g.holdAim(Rounds.indexOf(name), dx, dz, power);
+	var i = Rounds.indexOf(name);
+	if (i < 0) throw 'no hole "$name"';
+	g.holdAim(i, dx, dz, power);
 	return LittleSkies.view(g);
 }
 
 // a game of the story's own on its clock, silent, played to the moment (let go with the story)
-private function game(c:Controls):Game {
+@:nullSafety(Strict) private function game(c:Controls):Game {
 	LittleSkies.fonts();
 	Sounds.silent = true;
 	var g = new Game();

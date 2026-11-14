@@ -7,7 +7,7 @@ import helder.test.Test;
 // shot the aim's preview (Aim), played to the end, leaves the ball where the
 // shot does, bit for bit; a fan of previews from each tee, as the game
 // makes them, allocates nothing once the ghost's buffers have grown.
-function tests() {
+@:nullSafety(Strict) function tests() {
 	describe("recorded rounds", () -> {
 		test("every hole has one", () -> {
 			for (i in 0...Course.holes.length)
@@ -20,7 +20,7 @@ function tests() {
 		for (i in 0...Course.holes.length) {
 			var hole = Course.holes[i], shots = Rounds.of(i);
 			if (shots == null) continue;
-			var r = {hole: i, shots: shots};
+			var r:{hole:Int, shots:Array<Array<Float>>} = {hole: i, shots: shots};
 			test('hole ${i + 1}, ${hole.name}: holed at or under par', () -> {
 				var res = Rounds.replay(hole, r.shots);
 				assert(res.sim.sunk, 'not holed: the ball at ${res.sim.ball.position.x} ${res.sim.ball.position.y} ${res.sim.ball.position.z}');
@@ -36,7 +36,7 @@ function tests() {
 		for (i in 0...Course.holes.length) {
 			var hole = Course.holes[i], shots = Rounds.of(i);
 			if (shots == null) continue;
-			var r = {hole: i, shots: shots};
+			var r:{hole:Int, shots:Array<Array<Float>>} = {hole: i, shots: shots};
 			test('hole ${i + 1}: each shot\'s preview ends where the shot does', () -> {
 				var sim = new Sim(hole), aim = new Aim(sim);
 				var k = 0;

@@ -88,8 +88,8 @@ class Sim {
 
 	// the cup's centre (on the green's top)
 	public final cup:Vec3;
-	// below this the ball has fallen off
-	public final floor:Float;
+	// below this the ball has fallen off (set once the pieces are in, the lowest they reach)
+	public var floor(default, null) = 0.0;
 
 	public var strokes(default, null) = 0;
 	public var steps(default, null) = 0;
@@ -136,20 +136,22 @@ class Sim {
 		this.hole = hole;
 		physics.sleepSteps = 1 << 30;
 		physics.iterations = 8;
-		var low = 0.0;
-		for (piece in hole.pieces)
-			low = Math.min(low, add(piece));
-		floor = low - SLAB - 1.5;
 		cup = new Vec3(hole.cup.x, hole.cup.y, hole.cup.z);
 		var start = new Vec3(hole.tee.x, hole.tee.y + BALL, hole.tee.z);
-		ball = physics.add(new Body(Sphere(BALL), start, 0.045));
+		spot = start;
+		safe = start;
+		previous = start;
+		// (made before the pieces, added to the world after them: its body last, as it always was)
+		ball = new Body(Sphere(BALL), start, 0.045);
 		ball.rotates = false;
 		ball.restitution = 1;
 		// (Coulomb friction is sqrt(ball's * green's): about 0.055 on the green, a slow slide that stands for rolling)
 		ball.friction = 0.003;
-		spot = start;
-		safe = start;
-		previous = start;
+		var low = 0.0;
+		for (piece in hole.pieces)
+			low = Math.min(low, add(piece));
+		floor = low - SLAB - 1.5;
+		physics.add(ball);
 		place(0);
 	}
 

@@ -230,7 +230,6 @@ class Game {
 		preview = new Aim(sim);
 		sky = signal(gradient(Course.worlds[sim.hole.world]));
 		island = signal(sim.hole.world);
-		stepFn = stepSim;
 		shot.within = nearBall;
 		shot.onGesture = g -> aim();
 		theme(Course.worlds[sim.hole.world]);
@@ -943,7 +942,9 @@ class Game {
 			timeScale = 1 - 0.75 * k * k * (3 - 2 * k);
 		} else timeScale = 1;
 		var gameDt = dt * timeScale;
-		clock.advance(gameDt, stepFn);
+		var step = stepFn;
+		if (step == null) stepFn = step = stepSim;
+		clock.advance(gameDt, step);
 		events();
 		syncBall(gameDt);
 		aimView();
@@ -982,8 +983,8 @@ class Game {
 		}
 	}
 
-	// (made once: a method passed as a function is a new closure each time)
-	final stepFn:Float->Void;
+	// (made once, on the first frame: a method passed as a function is a new closure each time)
+	var stepFn:Null<Float->Void>;
 
 	function stepSim(dt:Float) {
 		sim.step();
@@ -1083,6 +1084,7 @@ class Game {
 			var i = sim.cracked;
 			sim.cracked = -1;
 			Sounds.crumble();
+			var bits = bits;
 			if (i < tileNodes.length && bits != null) {
 				var t = tileNodes[i].position;
 				for (_ in 0...10)
@@ -1104,6 +1106,7 @@ class Game {
 			show("Splash!  +1");
 			Sounds.splash();
 			var s = sim.splashAt;
+			var puffs = puffs;
 			if (puffs != null) {
 				puffs.burst(16, s.x, s.y, s.z, 1.0, 2.6, 0.8, 0.08, 7, 1, 0xbfe9ff);
 				puffs.burst(8, s.x, s.y, s.z, 0.5, 3.4, 0.9, 0.06, 7, 1, 0xffffff);
@@ -1201,6 +1204,7 @@ class Game {
 		var p = sim.ball.position;
 		var n = aimDots.length;
 		var shown = on ? Std.int(2 + aimPower * (n - 2) + 0.5) : 0;
+		var kit = kit;
 		if (kit != null && on) {
 			var c0 = new Vec4(1, 1, 1, 1), c1 = Kit.rgb(0xffd166), c2 = Kit.rgb(0xff6b6b);
 			var k = aimPower;
@@ -1311,6 +1315,7 @@ class Game {
 			}
 		}
 		// (over a booster: sparks)
+		var motes = motes;
 		if (sim.area == Sim.AREA_BOOST && motes != null) {
 			dustTime -= dt;
 			if (dustTime <= 0) {

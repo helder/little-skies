@@ -142,60 +142,60 @@ class Kit {
 		rockDarkMat = mat(0xd9b8e8);
 		railMat = mat(0xfff6e8, 0.55);
 		accentMat = mat(0xff6b6b, 0.5);
-		grass = box(grassMat);
-		grassDark = box(grassDarkMat);
-		rock = frustum(rockMat, 8);
-		rockDark = frustum(rockDarkMat, 8);
-		rail = box(railMat);
+		grass = box(device, grassMat);
+		grassDark = box(device, grassDarkMat);
+		rock = frustum(device, rockMat, 8);
+		rockDark = frustum(device, rockDarkMat, 8);
+		rail = box(device, railMat);
 		rockBoxMat = mat(0xd9b8e8);
-		rockBox = box(rockBoxMat);
-		accentBox = box(accentMat);
-		accentCylinder = cylinder(accentMat, 16, false);
-		post = cylinder(mat(0xfff6e8, 0.5), 12, false);
+		rockBox = box(device, rockBoxMat);
+		accentBox = box(device, accentMat);
+		accentCylinder = cylinder(device, accentMat, 16, false);
+		post = cylinder(device, mat(0xfff6e8, 0.5), 12, false);
 		bumperMat = mat(0xff5d73, 0.35, 1, 0.25);
-		bumper = cylinder(bumperMat, 16, false);
-		bumperCap = cylinder(mat(0xffffff, 0.3), 16, false);
-		mover = box(mat(0x7ec8f8, 0.45));
-		spinner = box(mat(0xffd166, 0.4));
-		hub = cylinder(mat(0x6c5b7b, 0.4), 12, false);
+		bumper = cylinder(device, bumperMat, 16, false);
+		bumperCap = cylinder(device, mat(0xffffff, 0.3), 16, false);
+		mover = box(device, mat(0x7ec8f8, 0.45));
+		spinner = box(device, mat(0xffd166, 0.4));
+		hub = cylinder(device, mat(0x6c5b7b, 0.4), 12, false);
 		var liftMat = mat(0xc9d6df, 0.3);
 		liftMat.metallic = 0.6;
-		liftTop = box(liftMat);
-		piston = cylinder(liftMat, 12, false);
-		boost = box(mat(0xff8f3f, 0.4, 1, 0.35));
+		liftTop = box(device, liftMat);
+		piston = cylinder(device, liftMat, 12, false);
+		boost = box(device, mat(0xff8f3f, 0.4, 1, 0.35));
 		chevronMat = mat(0xfff0c0, 0.4, 1, 1.4);
-		chevron = arrowHead(chevronMat);
-		sand = box(mat(0xe9c47e, 1));
+		chevron = arrowHead(device, chevronMat);
+		sand = box(device, mat(0xe9c47e, 1));
 		var iceMat = mat(0xd8f3ff, 0.08, 0.92);
 		iceMat.clearcoat = 1;
-		ice = box(iceMat);
+		ice = box(device, iceMat);
 		waterMat = mat(0x3bb3e0, 0.06, 0.82);
 		waterMat.clearcoat = 1;
 		waterMat.castShadows = false;
-		water = box(waterMat);
+		water = box(device, waterMat);
 		rippleMat = mat(0xffffff, 0.3, 0.5);
 		rippleMat.castShadows = false;
-		ripple = cylinder(rippleMat, 24, true);
-		portal = cylinder(mat(0x8a5cff, 0.2, 1, 1.6), 24, false);
-		portalRing = cylinder(mat(0xd9c6ff, 0.2, 1, 2.2), 24, true);
-		plates = [for (c in GROUPS) cylinder(mat(c, 0.4, 1, 0.15), 20, false)];
-		plateLit = [for (c in GROUPS) cylinder(mat(c, 0.3, 1, 1.6), 20, false)];
-		gates = [for (c in GROUPS) box(mat(c, 0.35, 1, 0.45))];
+		ripple = cylinder(device, rippleMat, 24, true);
+		portal = cylinder(device, mat(0x8a5cff, 0.2, 1, 1.6), 24, false);
+		portalRing = cylinder(device, mat(0xd9c6ff, 0.2, 1, 2.2), 24, true);
+		plates = [for (c in GROUPS) cylinder(device, mat(c, 0.4, 1, 0.15), 20, false)];
+		plateLit = [for (c in GROUPS) cylinder(device, mat(c, 0.3, 1, 1.6), 20, false)];
+		gates = [for (c in GROUPS) box(device, mat(c, 0.35, 1, 0.45))];
 		var paneMat = mat(0x9ee7ff, 0.1, 0.35, 0.6);
 		paneMat.castShadows = false;
 		paneMat.doubleSided = true;
-		pane = box(paneMat);
-		arrow = arrowHead(mat(0x9ee7ff, 0.3, 1, 1.2));
-		crumble = box(mat(0xd2c46a, 0.9));
-		crack = box(mat(0x6b5a3a, 1));
-		lantern = icosphere(mat(0xffd27a, 0.3, 1, 3.0));
-		ball = icosphere(mat(0xffffff, 0.35, 1, 0.08));
-		hole = cylinder(mat(0x1d1f30, 1), 20, false);
-		rim = cylinder(mat(0xffffff, 0.6), 20, false);
-		pole = cylinder(mat(0xfafafa, 0.4), 6, false);
+		pane = box(device, paneMat);
+		arrow = arrowHead(device, mat(0x9ee7ff, 0.3, 1, 1.2));
+		crumble = box(device, mat(0xd2c46a, 0.9));
+		crack = box(device, mat(0x6b5a3a, 1));
+		lantern = icosphere(device, mat(0xffd27a, 0.3, 1, 3.0));
+		ball = icosphere(device, mat(0xffffff, 0.35, 1, 0.08));
+		hole = cylinder(device, mat(0x1d1f30, 1), 20, false);
+		rim = cylinder(device, mat(0xffffff, 0.6), 20, false);
+		pole = cylinder(device, mat(0xfafafa, 0.4), 6, false);
 		flagMat = mat(0xff6b6b, 0.7);
-		flag = pennant(flagMat);
-		tee = cylinder(mat(0xfff0a8, 0.7), 20, false);
+		flag = pennant(device, flagMat);
+		tee = cylinder(device, mat(0xfff0a8, 0.7), 20, false);
 		dotMaterial = mat(0xffffff, 0.5, 1, 0.4);
 		dot = Shapes.sphere(device, dotMaterial, 0.5, 8, 4);
 		var pathMat = mat(0xffffff, 0.5, 1, 0.12);
@@ -203,20 +203,20 @@ class Kit {
 		pathDot = Shapes.sphere(device, pathMat, 0.5, 8, 4);
 		ringMaterial = mat(0xfff3b0, 0.6, 0.7, 0.8);
 		ringMaterial.castShadows = false;
-		ring = cylinder(ringMaterial, 32, true);
+		ring = cylinder(device, ringMaterial, 32, true);
 		var cloudMat = mat(0xffffff, 1);
 		cloudMat.castShadows = false;
-		cloud = icosphere(cloudMat);
+		cloud = icosphere(device, cloudMat);
 		leavesMat = mat(0x6cc070);
-		leaves = cone(leavesMat, 7);
-		trunk = cylinder(mat(0xc8a07a), 6, false);
+		leaves = cone(device, leavesMat, 7);
+		trunk = cylinder(device, mat(0xc8a07a), 6, false);
 		var wingMat = mat(0x3d3a50, 0.8);
 		wingMat.castShadows = false;
-		wing = pennant(wingMat);
-		stone = icosphere(mat(0xbfb6d6, 0.9));
+		wing = pennant(device, wingMat);
+		stone = icosphere(device, mat(0xbfb6d6, 0.9));
 		var puffMat = mat(0xffffff, 1);
 		puffMat.castShadows = false;
-		puff = icosphere(puffMat);
+		puff = icosphere(device, puffMat);
 		var confettiMat = mat(0xffffff, 0.6);
 		confettiMat.castShadows = false;
 		confettiMat.doubleSided = true;
@@ -227,7 +227,7 @@ class Kit {
 
 		// --- the diorama's
 		var clamp = device.createSampler({filter: Linear, wrap: Clamp});
-		var under = texture(4, 64, (x, y) -> {
+		var under = texture(device, 4, 64, (x, y) -> {
 			// (white at the top, a cool shade by the bottom: the rock's colour times it)
 			var k = y * y;
 			return [255 - 110 * k, 255 - 108 * k, 255 - 80 * k, 255];
@@ -237,8 +237,8 @@ class Kit {
 			m.sampler = clamp;
 		}
 		waterBedMat = mat(0x1f5f9e, 1);
-		waterBed = box(waterBedMat);
-		var soft = texture(64, 64, (x, y) -> {
+		waterBed = box(device, waterBedMat);
+		var soft = texture(device, 64, 64, (x, y) -> {
 			var dx = x * 2 - 1, dy = y * 2 - 1, r = Math.min(1, Math.sqrt(dx * dx + dy * dy));
 			var a = Math.exp(-r * r * 3.2) * (1 - r * r);
 			return [255, 255, 255, 255 * a];
@@ -247,12 +247,12 @@ class Kit {
 		blobMat.baseColorTexture = soft;
 		blobMat.sampler = clamp;
 		blobMat.castShadows = false;
-		blob = quad(blobMat, false);
+		blob = quad(device, blobMat, false);
 		skirtMat = mat(0x2c3a6e, 1, 0.24);
-		skirtMat.baseColorTexture = texture(4, 64, (x, y) -> [255, 255, 255, 255 * (1 - y) * (1 - y)]);
+		skirtMat.baseColorTexture = texture(device, 4, 64, (x, y) -> [255, 255, 255, 255 * (1 - y) * (1 - y)]);
 		skirtMat.sampler = clamp;
 		skirtMat.castShadows = false;
-		var light = texture(64, 64, (x, y) -> {
+		var light = texture(device, 64, 64, (x, y) -> {
 			var dx = x * 2 - 1, dy = y * 2 - 1, r = Math.min(1, Math.sqrt(dx * dx + dy * dy));
 			// (its falloff in alpha: the light added fades by it, and over the
 			// sky behind the scene its coverage is as soft as its light)
@@ -267,28 +267,28 @@ class Kit {
 		glowMat.blending = Additive;
 		glowMat.castShadows = false;
 		glowMat.fog = false;
-		glow = quad(glowMat, true);
+		glow = quad(device, glowMat, true);
 		var creature = mat(0xffffff, 0.9);
 		creature.castShadows = false;
 		creature.doubleSided = true;
-		birdBody = birdShape(creature);
+		birdBody = birdShape(device, creature);
 		var feather = mat(0xffffff, 0.9);
 		feather.castShadows = false;
 		feather.doubleSided = true;
-		wingIn = made([0, 0, -0.16, 0.52, 0.07, -0.13, 0.5, 0.07, 0.1, 0, 0, -0.16, 0.5, 0.07, 0.1, 0, 0, 0.14], feather);
-		wingTip = made([0.52, 0.07, -0.13, 1.0, -0.05, 0.12, 0.5, 0.07, 0.1], feather);
+		wingIn = made(device, [0, 0, -0.16, 0.52, 0.07, -0.13, 0.5, 0.07, 0.1, 0, 0, -0.16, 0.5, 0.07, 0.1, 0, 0, 0.14], feather);
+		wingTip = made(device, [0.52, 0.07, -0.13, 1.0, -0.05, 0.12, 0.5, 0.07, 0.1], feather);
 		var mothMat = mat(0xfff0c8, 0.6, 1, 1.6);
 		mothMat.castShadows = false;
 		mothMat.doubleSided = true;
-		moth = made([0, 0, 0, -0.5, 0.1, -0.35, -0.42, -0.05, 0.3, 0, 0, 0, 0.5, 0.1, -0.35, 0.42, -0.05, 0.3], mothMat);
-		heronBody = heronShape(mat(0x7f8fb8, 0.85), 0);
-		heronNeck = heronShape(mat(0xd8dcef, 0.85), 1);
-		heronBeak = heronShape(mat(0xf2b13c, 0.6), 2);
-		heronLegs = heronShape(mat(0x2b2d4a, 0.8), 3);
+		moth = made(device, [0, 0, 0, -0.5, 0.1, -0.35, -0.42, -0.05, 0.3, 0, 0, 0, 0.5, 0.1, -0.35, 0.42, -0.05, 0.3], mothMat);
+		heronBody = heronShape(device, mat(0x7f8fb8, 0.85), 0);
+		heronNeck = heronShape(device, mat(0xd8dcef, 0.85), 1);
+		heronBeak = heronShape(device, mat(0xf2b13c, 0.6), 2);
+		heronLegs = heronShape(device, mat(0x2b2d4a, 0.8), 3);
 	}
 
 	// a texture of width by height texels from f(u, v) (0..1 across): its rgba 0..255 (sRGB)
-	function texture(width:Int, height:Int, f:(Float, Float) -> Array<Float>):Texture {
+	static function texture(device:Device, width:Int, height:Int, f:(Float, Float) -> Array<Float>):Texture {
 		var b = Bytes.alloc(width * height * 4);
 		for (y in 0...height)
 			for (x in 0...width) {
@@ -300,7 +300,7 @@ class Kit {
 	}
 
 	// a unit square (-0.5..0.5), lying on xz facing up, or standing in xy facing +z; uv 0..1 across
-	function quad(m:Material, standing:Bool):Mesh {
+	static function quad(device:Device, m:Material, standing:Bool):Mesh {
 		var p = standing ? [-0.5, -0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0] : [-0.5, 0, 0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5];
 		var n = standing ? [0.0, 0, 1] : [0.0, 1, 0];
 		var mesh = new Mesh();
@@ -309,7 +309,7 @@ class Kit {
 	}
 
 	// a bird's body, a unit long, its beak toward -z: a diamond with a forked tail
-	function birdShape(m:Material):Mesh {
+	static function birdShape(device:Device, m:Material):Mesh {
 		var p = [];
 		var nose = new Vec3(0, 0.04, -0.5), top = new Vec3(0, 0.17, -0.12), belly = new Vec3(0, -0.14, -0.06);
 		var l = new Vec3(-0.15, 0.02, -0.1), r = new Vec3(0.15, 0.02, -0.1), tail = new Vec3(0, 0.03, 0.28);
@@ -324,13 +324,13 @@ class Kit {
 		tri(p, belly, r, tail);
 		tri(p, tail, tl, notch);
 		tri(p, tail, notch, tr);
-		return made(p, m);
+		return made(device, p, m);
 	}
 
 	// the heron's parts, about a metre tall at scale 1, facing -z: 0 the
 	// body and tail, 1 the neck and head (turning about the neck's foot,
 	// its origin: the node's), 2 the beak (on the neck's node), 3 the legs
-	function heronShape(m:Material, part:Int):Mesh {
+	static function heronShape(device:Device, m:Material, part:Int):Mesh {
 		m.castShadows = false;
 		m.doubleSided = true;
 		var p = [];
@@ -379,7 +379,7 @@ class Kit {
 					tri(p, v(x, 0, 0), v(x, 0.005, -0.08), v(x + 0.004, 0.006, 0));
 				}
 		}
-		return made(p, m);
+		return made(device, p, m);
 	}
 
 
@@ -404,11 +404,11 @@ class Kit {
 		waterMat.baseColor = w.night ? rgb(0x2a6fb0, 0.85) : rgb(0x3bb3e0, 0.8);
 	}
 
-	function box(m:Material):Mesh
+	static function box(device:Device, m:Material):Mesh
 		return Shapes.box(device, m, 1, 1, 1);
 
 	// (triangles of their own vertices: flat shaded, normals from the faces)
-	function made(p:Array<Float>, m:Material, ?uvs:Array<Float>):Mesh {
+	static function made(device:Device, p:Array<Float>, m:Material, ?uvs:Array<Float>):Mesh {
 		var mesh = new Mesh();
 		mesh.add(device, p, null, uvs, null, m);
 		return mesh;
@@ -425,7 +425,7 @@ class Kit {
 	// an island's underside: an n-sided cone cut off, its top the unit square's
 	// circle at y = 0, narrowing to a third at y = -1 (counter-clockwise from above: outward),
 	// its sides broken into two bands for a rockier edge
-	function frustum(m:Material, n:Int):Mesh {
+	static function frustum(device:Device, m:Material, n:Int):Mesh {
 		var p = [];
 		for (i in 0...n) {
 			var a0 = 2 * Math.PI * i / n, a1 = 2 * Math.PI * (i + 1) / n;
@@ -445,11 +445,11 @@ class Kit {
 			tri(p, new Vec3(0, -1.05, 0), b0, b1);
 		}
 		// (v down its height: the darker ramp toward the bottom)
-		return made(p, m, [for (i in 0...Std.int(p.length / 3)) for (k in 0...2) k == 0 ? 0.5 : Math.min(1, -p[i * 3 + 1])]);
+		return made(device, p, m, [for (i in 0...Std.int(p.length / 3)) for (k in 0...2) k == 0 ? 0.5 : Math.min(1, -p[i * 3 + 1])]);
 	}
 
 	// a unit cylinder (radius 0.5, y from 0 to 1), n sides; open: no caps (a ring)
-	function cylinder(m:Material, n:Int, open:Bool):Mesh {
+	static function cylinder(device:Device, m:Material, n:Int, open:Bool):Mesh {
 		var p = [];
 		for (i in 0...n) {
 			var a0 = 2 * Math.PI * i / n, a1 = 2 * Math.PI * (i + 1) / n;
@@ -463,11 +463,11 @@ class Kit {
 			}
 		}
 		if (open) m.doubleSided = true;
-		return made(p, m);
+		return made(device, p, m);
 	}
 
 	// a unit cone (radius 0.5 at y = 0, its tip at y = 1)
-	function cone(m:Material, n:Int):Mesh {
+	static function cone(device:Device, m:Material, n:Int):Mesh {
 		var p = [];
 		for (i in 0...n) {
 			var a0 = 2 * Math.PI * i / n, a1 = 2 * Math.PI * (i + 1) / n;
@@ -475,19 +475,19 @@ class Kit {
 			tri(p, b0, b1, new Vec3(0, 1, 0));
 			tri(p, new Vec3(0, 0, 0), b1, b0);
 		}
-		return made(p, m);
+		return made(device, p, m);
 	}
 
 	// a pennant: a triangle from the pole (x = 0) out to x = 1, y from 0 to 1 (a wing too)
-	function pennant(m:Material):Mesh {
+	static function pennant(device:Device, m:Material):Mesh {
 		m.doubleSided = true;
 		var p = [];
 		tri(p, new Vec3(0, 0, 0), new Vec3(1, 0.5, 0), new Vec3(0, 1, 0));
-		return made(p, m);
+		return made(device, p, m);
 	}
 
 	// a chevron lying flat, pointing to -z: a unit wide, half a unit deep, a tenth high
-	function arrowHead(m:Material):Mesh {
+	static function arrowHead(device:Device, m:Material):Mesh {
 		var p = [];
 		var pts = [new Vec3(-0.5, 0, 0.25), new Vec3(0, 0, -0.25), new Vec3(0.5, 0, 0.25), new Vec3(0.5, 0, 0.5), new Vec3(0, 0, 0), new Vec3(-0.5, 0, 0.5)];
 		// (its outline: a band of quads up to y = 0.1, its top)
@@ -504,11 +504,11 @@ class Kit {
 		tri(p, top(pts[1]), top(pts[4]), top(pts[3]));
 		tri(p, top(pts[1]), top(pts[3]), top(pts[2]));
 		m.doubleSided = true;
-		return made(p, m);
+		return made(device, p, m);
 	}
 
 	// a low-poly ball: an icosahedron split once (80 faces), radius 0.5, flat shaded
-	function icosphere(m:Material):Mesh {
+	static function icosphere(device:Device, m:Material):Mesh {
 		var t = (1 + Math.sqrt(5)) / 2;
 		var v = [
 			new Vec3(-1, t, 0), new Vec3(1, t, 0), new Vec3(-1, -t, 0), new Vec3(1, -t, 0), new Vec3(0, -1, t), new Vec3(0, 1, t), new Vec3(0, -1, -t),
@@ -533,6 +533,6 @@ class Kit {
 			tri(p, ab, bc, ca);
 			i += 3;
 		}
-		return made(p, m);
+		return made(device, p, m);
 	}
 }
