@@ -380,9 +380,9 @@ class Course {
 			pieces: [
 				Flat(0, -0.6, 1.6, 3.2, 0), Boost(0, -1.4, 1.2, 0.9, 0, 0, -16), RampZ(0, -2.2, -6.2, 1.6, 0, 1.6), Boost(0, -4.2, 1.2, 0.9, 0.8, 0, -16),
 				Flat(0, -8.4, 2.4, 4.4, 1.6), Block(-0.8, -2.2, -0.68, -6.2, 0, 1.8), Block(0.68, -2.2, 0.8, -6.2, 0, 1.8),
-				Mover(-0.75, -8.9, 0.6, 0.3, 1.6, 1.5, 0, 3.0, 0), Post(-0.1, -9.9, 0.1, 1.6)
+				Post(-0.1, -9.9, 0.1, 1.6)
 			].concat(rails(-0.8, 1, 0.8, -2.2, 0, "swe")).concat(rails(-1.2, -6.2, 1.2, -10.6, 1.6, "we")),
-			tip: "Boosters speed the ball up the slope: the top has no back rail, and a slider"
+			tip: "Boosters speed the ball up the slope: the top has no back rail"
 		},
 		// 11: a lift up to the ledge with the cup: stop on it, ride up, shoot off
 		{
@@ -612,17 +612,19 @@ class Course {
 			].concat(rails(-1.2, 1, 1.2, -8.8)),
 			tip: "Plates flip their gates each time the ball rolls over them"
 		},
-		// 27: up by the portal to the moonlit plateau, past the turnstile to the switch, into the pen
+		// 27: up by the portal onto the moonlit plateau, over the switch into the sand; past the turnstile, round to the pen's
+		// narrow gate (a second turnstile before it) and in to the cup in its far corner
 		{
 			name: "Moonrise",
 			world: 2,
-			par: 5,
+			par: 4,
 			tee: p(0, 0.3),
-			cup: p(3.1, -7.2, 0.8),
+			cup: p(3.35, -7.55, 0.8),
 			pieces: [
 				Flat(0, -1, 2.4, 4, 0), Portal(0, -2.4, 0, -0.4, -4.8, 0.8, 0, -1), Flat(1.2, -6.2, 5.2, 3.6, 0.8),
-				Spinner(-0.4, -6.4, 1.3, 0.8, 1.5, 0), Switch(-0.4, -7.5, 0.8, 0), Wall(2.4, -6.0, 2.52, -7.88, 0.8), Gate(2.52, -6.06, 3.68, -6.06, 0.8, 0, false),
-				Bumper(0.9, -5.4, 0.15, 0.8)
+				Switch(-0.4, -6.4, 0.8, 0), Sand(-0.4, -7.35, 1.4, 1.0, 0.8), Spinner(1.2, -6.6, 1.3, 0.8, 1.5, 0), Wall(2.4, -6.0, 2.52, -7.88, 0.8),
+				Gate(2.52, -6.06, 3.12, -6.06, 0.8, 0, false), Wall(3.12, -6.0, 3.68, -6.12, 0.8), Spinner(2.85, -5.3, 1.0, 0.8, -1.8, 0.5),
+				Post(3.05, -7.0, 0.1, 0.8), Bumper(0.9, -5.0, 0.15, 0.8)
 			].concat(rails(-1.2, 1, 1.2, -3, 0, "swe")).concat(rails(-1.4, -4.4, 3.8, -8, 0.8)),
 			tip: "Everything you have learned, together"
 		},
@@ -735,7 +737,8 @@ class Course {
 				.concat(rails(-1.2, -8.5, 1.2, -11, 0.6, "nwe")),
 			tip: "Downhill on ice: it never stops, so bank it through the gaps"
 		},
-		// 36: up the boosted ramp to the icy summit, round the turnstile to the plate in its bay, into the pen by the gate it opens
+		// 36: up the boosted ramp to the icy summit, round the turnstile to the plate in its bay (sand behind it), into the
+		// sandy pen by the gate it opens
 		{
 			name: "Aurora Summit",
 			world: 3,
@@ -745,7 +748,7 @@ class Course {
 			pieces: [
 				Flat(0, -1, 2.4, 4, 0), Ice(0, -1.2, 2.4, 2, 0), Boost(0, -2.5, 1.0, 0.6, 0, 0, -14), RampZ(0, -3, -5, 1.2, 0, 0.8),
 				Block(-0.72, -3, -0.6, -5, 0, 1.0), Block(0.6, -3, 0.72, -5, 0, 1.0), Flat(0, -7, 3.6, 4, 0.8), Ice(0, -7, 3.6, 4, 0.8),
-				Sand(0, -5.55, 1.2, 1.0, 0.8), Switch(-1.35, -8.4, 0.8, 0), Spinner(-0.35, -7.6, 1.2, 0.8, 1.4, 0),
+				Sand(0, -5.55, 1.2, 1.0, 0.8), Switch(-1.35, -8.1, 0.8, 0), Sand(-1.35, -8.7, 0.9, 0.6, 0.8), Sand(1.15, -8.2, 1.2, 1.4, 0.8), Spinner(-0.35, -7.6, 1.2, 0.8, 1.4, 0),
 				Wall(0.4, -7.4, 1.0, -7.52, 0.8), Gate(1.0, -7.46, 1.8, -7.46, 0.8, 0, false), Wall(0.4, -7.4, 0.52, -9, 0.8), Bumper(-1.5, -5.4, 0.15, 0.8),
 				Bumper(1.5, -5.4, 0.15, 0.8)
 			].concat(rails(-1.2, 1, 1.2, -3, 0, "swe")).concat([Wall(-1.2, -3.12, -0.6, -3, 0), Wall(0.6, -3.12, 1.2, -3, 0)])

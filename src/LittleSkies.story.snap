@@ -99,11 +99,11 @@ Node#root 0,0 390x844
         Node#score 250,12 126x51
           Node#view 266,18 20x39
             TextNode#text 266,18 20x14 "PAR"
-            TextNode#text 271,32 10x25 "5"
+            TextNode#text 271,32 10x25 "4"
           Node#view 300,18 1x39
           Node#view 315,18 45x39
             TextNode#text 315,18 45x14 "STROKES"
-            TextNode#strokes 332,32 10x25 "1"
+            TextNode#strokes 332,32 10x25 "2"
       Node#view 14,63 362x765
       Node#view 14,828 362x0
     Node#view 0,0 390x844
@@ -448,7 +448,7 @@ Node#root 0,0 390x844
                       Node#view 382,347 64x16
                         ImageNode#image 382,348 14x14
                         TextNode#text 400,347 46x16 "0 of 27"
-                      TextNode#text 566,348 126x15 "0 of 9 holes · par 29"
+                      TextNode#text 566,348 126x15 "0 of 9 holes · par 28"
                   Node#view 368,385 338x290
                     Node#hole-19 368,385 107x92
                       Node#view 402,410 39x25

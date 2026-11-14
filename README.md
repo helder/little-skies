@@ -91,7 +91,7 @@ better is the last column.
 |  | 7 The Leap | 2 | 71% | a kicker over a gap |
 |  | 8 Carom | 3 | 75% | the cup in a pocket facing the block in front of it: bank round the block into the sand behind it |
 |  | 9 Hilltop Hop | 3 | 58% | risk or reward: a narrow bridge with no rails and sand, or the jump over the gap past the bumpers |
-| **Copperwind Cliffs** (sunset) | 10 Booster Run | 2 | 96% | boosters up a slope; the top has no back rail, a slider on it |
+| **Copperwind Cliffs** (sunset) | 10 Booster Run | 2 | 100% | boosters up a slope; the top has no back rail |
 |  | 11 Lift Off | 2 | 92% | a lift: stop on it, ride up, shoot off |
 |  | 12 Sliders | 2 | 75% | blocks sliding across the lane: timing |
 |  | 13 Turnstile | 2 | 79% | turnstiles, turning opposite ways |
@@ -108,7 +108,7 @@ better is the last column.
 |  | 24 Two Doors | 3 | 63% | one switch group: as one gate opens the other shuts |
 |  | 25 Brittle Bridge | 4 | 63% | crumbling tiles to the switch; back by the portal through the gate it opened |
 |  | 26 Lockstep | 3 | 54% | two gates, a plate right before each: the first opens the near one, the second shuts the far one |
-|  | 27 Moonrise | 5 | 25% | portal, turnstile, switch and a gated pen together |
+|  | 27 Moonrise | 4 | 50% | the portal over the switch into the sand, past two turnstiles, into the pen by its narrow gate |
 | **Frostglass Peaks** (winter) | 28 First Frost | 2 | 100% | ice: it hardly slows the ball |
 |  | 29 Ice Rink | 2 | 96% | banks on ice keep their speed: round the block to the corner |
 |  | 30 Curling | 2 | 83% | stones guarding the cup: banked round them on the ice |
@@ -117,7 +117,7 @@ better is the last column.
 |  | 33 Glacier Slide | 2 | 50% | sliders across ice: steady speed, true timing |
 |  | 34 Thin Ice | 3 | 46% | cracked strips over a pool, each falling once crossed, to an ice island |
 |  | 35 Icefall | 3 | 33% | a frozen waterfall: down three drops, the ball never stopping on the ice; each landing's rail has a gap, right then left |
-|  | 36 Aurora Summit | 4 | 33% | boosters, ice, a turnstile, a plate in a bay and a gated pen |
+|  | 36 Aurora Summit | 4 | 46% | boosters, ice, a turnstile, a plate in a sandy bay and a gated pen |
 
 Stars: three for par or better, two for one over, one for finishing.
 
