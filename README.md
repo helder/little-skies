@@ -114,9 +114,9 @@ better is the last column.
 |  | 30 Curling | 2 | 83% | stones guarding the cup: banked round them on the ice |
 |  | 31 Frozen Portal | 2 | 75% | a turnstile before the portal, ice beyond it |
 |  | 32 Snowgate | 3 | 75% | a plate on ice: the ball can roll over it twice and flip it back |
-|  | 33 Icefall | 3 | ICEFALL | a frozen waterfall: down three drops, each landing's rail with a gap, right then left |
-|  | 34 Glacier Slide | 2 | 50% | sliders across ice: steady speed, true timing |
-|  | 35 Thin Ice | 3 | 46% | cracked strips over a pool, each falling once crossed, to an ice island |
+|  | 33 Glacier Slide | 2 | 50% | sliders across ice: steady speed, true timing |
+|  | 34 Thin Ice | 3 | 46% | cracked strips over a pool, each falling once crossed, to an ice island |
+|  | 35 Icefall | 3 | 33% | a frozen waterfall: down three drops, the ball never stopping on the ice; each landing's rail has a gap, right then left |
 |  | 36 Aurora Summit | 4 | 33% | boosters, ice, a turnstile, a plate in a bay and a gated pen |
 
 Stars: three for par or better, two for one over, one for finishing.
@@ -181,7 +181,7 @@ helder.run's block, the stores), its entry `src/LittleSkies.hx`.
 - `Sounds.hx`: a tock, knocks, a thud, a boing, a warp, a click and a
   rumble, a crumble, a splash, a whoosh, the cup's plunk and a chime, all
   made procedurally. `Save.hx`: the best scores, kept by helder.os's
-  `Store`.
+  `Store` by the holes' names (the first version's, by place, read once).
 - `brand/`: the lockup (`title*.svg`: per island, light, small) and the
   hazes, the icons (dusk, the default: `icon-ios.svg`, Android's adaptive
   layers `icon-android-foreground.svg`, `-background.svg` and

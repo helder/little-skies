@@ -690,7 +690,35 @@ class Course {
 				.concat(rails(-0.8, -4, 0.8, -7, 0, "nwe")),
 			tip: "On ice the ball can cross a plate twice: and flip it back"
 		},
-		// 33: a frozen cascade: down three drops, landings of ice railed but for a gap in each, right then left
+		// 33: blocks sliding across an icy lane: the ball keeps its speed, so the timing is true
+		{
+			name: "Glacier Slide",
+			world: 3,
+			par: 2,
+			tee: p(0, 0.4),
+			cup: p(0.4, -8.2),
+			pieces: [
+				Flat(0, -4, 2.0, 10, 0), Ice(0, -4, 2.0, 6, 0), Mover(-0.55, -3, 0.8, 0.3, 0, 1.1, 0, 2.2, 0), Mover(0.55, -5.4, 0.8, 0.3, 0, -1.1, 0, 1.7, 0.3),
+				Sand(0.4, -8.2, 1.2, 0.8, 0)
+			].concat(rails(-1, 1, 1, -9, 0, "swe")),
+			tip: "Steady speed on ice: time it past the sliders"
+		},
+		// 34: cracked ice over the pool: up one strip, along the next, to the ice island; each strip falls once crossed
+		{
+			name: "Thin Ice",
+			world: 3,
+			par: 3,
+			tee: p(-0.6, 0.3),
+			cup: p(1.3, -5.9),
+			pieces: [
+				Flat(0, -0.4, 2.4, 2.4, 0), Water(0.3, -3.1, 3.0, 3.0, -0.2), Crumble(-0.6, -2.5, 0.7, 1.8, 0), Crumble(0.3, -3.05, 1.1, 0.7, 0),
+				Crumble(1.2, -3.05, 0.7, 0.7, 0), Crumble(1.2, -3.95, 0.7, 1.1, 0), Flat(1.0, -5.75, 2.6, 2.5, 0), Ice(1.0, -5.75, 2.6, 2.5, 0),
+				Bumper(0.4, -6.4, 0.14, 0)
+			].concat(rails(-1.2, 1, 1.2, -1.6, 0, "swe")).concat([Wall(-1.2, -1.6, -0.95, -1.48, 0), Wall(-0.25, -1.6, 1.2, -1.48, 0)])
+				.concat(rails(-0.3, -4.5, 2.3, -7.0, 0, "nwe")).concat([Wall(-0.3, -4.5, 0.85, -4.62, 0)]),
+			tip: "Cracked tiles fall once the ball has crossed them"
+		},
+		// 35: a frozen cascade: down three drops, landings of ice railed but for a gap in each, right then left
 		{
 			name: "Icefall",
 			world: 3,
@@ -706,34 +734,6 @@ class Course {
 				.concat([Wall(-1.32, -2.5, -1.2, -4.0, 1.8), Wall(1.2, -2.5, 1.32, -4.0, 1.8), Wall(-1.32, -5.5, -1.2, -7.0, 1.2), Wall(1.2, -5.5, 1.32, -7.0, 1.2)])
 				.concat(rails(-1.2, -8.5, 1.2, -11, 0.6, "nwe")),
 			tip: "Downhill on ice: it never stops, so bank it through the gaps"
-		},
-		// 34: blocks sliding across an icy lane: the ball keeps its speed, so the timing is true
-		{
-			name: "Glacier Slide",
-			world: 3,
-			par: 2,
-			tee: p(0, 0.4),
-			cup: p(0.4, -8.2),
-			pieces: [
-				Flat(0, -4, 2.0, 10, 0), Ice(0, -4, 2.0, 6, 0), Mover(-0.55, -3, 0.8, 0.3, 0, 1.1, 0, 2.2, 0), Mover(0.55, -5.4, 0.8, 0.3, 0, -1.1, 0, 1.7, 0.3),
-				Sand(0.4, -8.2, 1.2, 0.8, 0)
-			].concat(rails(-1, 1, 1, -9, 0, "swe")),
-			tip: "Steady speed on ice: time it past the sliders"
-		},
-		// 35: cracked ice over the pool: up one strip, along the next, to the ice island; each strip falls once crossed
-		{
-			name: "Thin Ice",
-			world: 3,
-			par: 3,
-			tee: p(-0.6, 0.3),
-			cup: p(1.3, -5.9),
-			pieces: [
-				Flat(0, -0.4, 2.4, 2.4, 0), Water(0.3, -3.1, 3.0, 3.0, -0.2), Crumble(-0.6, -2.5, 0.7, 1.8, 0), Crumble(0.3, -3.05, 1.1, 0.7, 0),
-				Crumble(1.2, -3.05, 0.7, 0.7, 0), Crumble(1.2, -3.95, 0.7, 1.1, 0), Flat(1.0, -5.75, 2.6, 2.5, 0), Ice(1.0, -5.75, 2.6, 2.5, 0),
-				Bumper(0.4, -6.4, 0.14, 0)
-			].concat(rails(-1.2, 1, 1.2, -1.6, 0, "swe")).concat([Wall(-1.2, -1.6, -0.95, -1.48, 0), Wall(-0.25, -1.6, 1.2, -1.48, 0)])
-				.concat(rails(-0.3, -4.5, 2.3, -7.0, 0, "nwe")).concat([Wall(-0.3, -4.5, 0.85, -4.62, 0)]),
-			tip: "Cracked tiles fall once the ball has crossed them"
 		},
 		// 36: up the boosted ramp to the icy summit, round the turnstile to the plate in its bay, into the pen by the gate it opens
 		{

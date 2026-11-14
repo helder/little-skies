@@ -64,7 +64,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 170x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "33"
+            TextNode#text 29,25 18x22 "35"
           Node#view 66,19 104x35
             TextNode#text 66,19 104x13 "FROSTGLASS PEAKS"
             TextNode#text 66,32 104x22 "Icefall"
@@ -537,17 +537,17 @@ Node#root 0,0 390x844
                       Node#view 975,509 39x25
                         TextNode#text 975,509 20x25 "33"
                         ImageNode#image 1000,514 14x14
-                      TextNode#text 973,537 42x15 "Icefall"
+                      TextNode#text 955,537 78x15 "Glacier Slide"
                     Node#hole-34 710,583 107x92
                       Node#view 744,608 39x25
                         TextNode#text 744,608 20x25 "34"
                         ImageNode#image 769,613 14x14
-                      TextNode#text 725,636 78x15 "Glacier Slide"
+                      TextNode#text 740,636 48x15 "Thin Ice"
                     Node#hole-35 825,583 108x92
                       Node#view 859,608 39x25
                         TextNode#text 859,608 20x25 "35"
                         ImageNode#image 884,613 14x14
-                      TextNode#text 855,636 48x15 "Thin Ice"
+                      TextNode#text 858,636 42x15 "Icefall"
                     Node#hole-36 940,583 108x92
                       Node#view 975,608 39x25
                         TextNode#text 975,608 20x25 "36"
