@@ -311,8 +311,12 @@ class LittleSkies implements Markup {
 		var last = i == Course.holes.length - 1;
 		var islandEnd = i == holes[holes.length - 1];
 		var got = worldStars(g.best.peek(), w), all = holes.length * 3;
-		// (the next island, opened by finishing this one's last hole for the first time)
+		// (the next island, opened by finishing this one's last hole for the first time;
+		// none after the last island: Show's children are built either way)
 		var opened = islandEnd && !last && before == 0;
+		var nextWorld = Course.worlds[w + 1];
+		var nextName = nextWorld == null ? "" : nextWorld.name;
+		var nextColor = last ? deep(i) : deep(i + 1);
 		function star(k:Int):View {
 			var d = 0.25 + k * 0.22, size = k == 1 ? 62 : 50;
 			return <view slot={n > k ? "star" : "fade"} margin-top={k == 1 ? 0 : 12}
@@ -347,7 +351,7 @@ class LittleSkies implements Markup {
 				</view>
 			</view>
 			<Show when={opened}>
-				<text tag="opened" font-size={14} font-weight={700} color={deep(i + 1)}>{Course.worlds[w + 1].name + " is open"}</text>
+				<text tag="opened" font-size={14} font-weight={700} color={nextColor}>{nextName + " is open"}</text>
 			</Show>
 			<Show when={last && islandEnd}>
 				<text font-size={14} font-weight={700} color={deep(i)}>The whole sky is yours</text>
