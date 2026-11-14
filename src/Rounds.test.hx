@@ -11,11 +11,17 @@ function tests() {
 	describe("recorded rounds", () -> {
 		test("every hole has one", () -> {
 			for (i in 0...Course.holes.length)
-				assert(Lambda.exists(Rounds.rounds, r -> r.hole == i), 'hole ${i + 1} has no recorded round');
+				assert(Rounds.of(i) != null, 'hole ${i + 1}, ${Course.holes[i].name}, has no recorded round');
 		});
-		for (r in Rounds.rounds) {
-			var hole = Course.holes[r.hole];
-			test('hole ${r.hole + 1}, ${hole.name}: holed at or under par', () -> {
+		test("every round is a hole's", () -> {
+			for (r in Rounds.rounds)
+				assert(Rounds.indexOf(r.hole) >= 0, 'no hole ${r.hole}');
+		});
+		for (i in 0...Course.holes.length) {
+			var hole = Course.holes[i], shots = Rounds.of(i);
+			if (shots == null) continue;
+			var r = {hole: i, shots: shots};
+			test('hole ${i + 1}, ${hole.name}: holed at or under par', () -> {
 				var res = Rounds.replay(hole, r.shots);
 				assert(res.sim.sunk, 'not holed: the ball at ${res.sim.ball.position.x} ${res.sim.ball.position.y} ${res.sim.ball.position.z}');
 				equals(res.sim.strokes, r.shots.length);
@@ -27,9 +33,11 @@ function tests() {
 	});
 
 	describe("the aim's preview", () -> {
-		for (r in Rounds.rounds) {
-			var hole = Course.holes[r.hole];
-			test('hole ${r.hole + 1}: each shot\'s preview ends where the shot does', () -> {
+		for (i in 0...Course.holes.length) {
+			var hole = Course.holes[i], shots = Rounds.of(i);
+			if (shots == null) continue;
+			var r = {hole: i, shots: shots};
+			test('hole ${i + 1}: each shot\'s preview ends where the shot does', () -> {
 				var sim = new Sim(hole), aim = new Aim(sim);
 				var k = 0;
 				for (s in r.shots) {

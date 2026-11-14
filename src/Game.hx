@@ -79,6 +79,8 @@ class Game {
 	// best strokes per hole (0: not finished), saved
 	public final best:Signal<Array<Int>>;
 	public final holeIndex:Signal<Int>;
+	// the hole's best before this hole-in (0: none: the first time)
+	public final lastBest = signal(0);
 	final save:Save;
 
 	// --- the scene's nodes
@@ -205,7 +207,7 @@ class Game {
 
 	public function new() {
 		save = new Save();
-		best = signal(save.best(Course.holes.length));
+		best = signal(save.best(Course.holes));
 		eye = world.node("eye");
 		camera = Camera.attach(eye, Camera.perspective(1.0, 0.1, 200));
 		sun = world.node("sun");
@@ -322,7 +324,7 @@ class Game {
 
 	// --- islands: their light and colours
 
-	static function gradient(w:World):String {
+	public static function gradient(w:World):String {
 		var s = w.sky;
 		return 'linear-gradient(180deg, ${s[0]} 0%, ${s[1]} 50%, ${s[2]} 100%)';
 	}
@@ -432,6 +434,12 @@ class Game {
 		pending = index;
 		curtainTime = 0;
 		curtain(true);
+	}
+
+	// a hole may be played: the first, one finished, or the one after a finished one
+	public function unlocked(i:Int):Bool {
+		var b = best();
+		return i == 0 || b[i] > 0 || b[i - 1] > 0;
 	}
 
 	public function next()
@@ -1101,11 +1109,12 @@ class Game {
 			burst();
 			Sounds.cup();
 			var b = best.peek(), i = holeIndex.peek();
+			lastBest(b[i]);
 			if (b[i] == 0 || sim.strokes < b[i]) {
 				var copy = b.copy();
 				copy[i] = sim.strokes;
 				best(copy);
-				save.write(copy);
+				save.write(Course.holes, copy);
 			}
 		}
 		if (sim.resting && !wasResting && !sim.sunk) {
