@@ -30,8 +30,6 @@ class LittleSkies implements Markup {
 	static function main() {
 		fonts();
 		var game = new Game();
-		var demo = Sys.getEnv("LS_DEMO"); // TEMP
-		if (demo != null) game.demo(Std.parseInt(demo), Rounds.of(Std.parseInt(demo))); // TEMP
 		Clock.add(t -> {
 			game.frame(t);
 			true;

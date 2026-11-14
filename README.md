@@ -2,9 +2,10 @@
 
 # Little Skies
 
-Mini golf: eighteen holes on three floating islands, each island
-bringing in its own pieces and then twisting them, so that on the later
-holes the puzzle is finding the route, not only aiming. Drag back from the
+Mini golf: thirty-six holes on four floating islands, each island
+bringing in its own pieces, then twisting them together with the ones
+before and ending on a hard hole, so that on the later holes the puzzle is
+finding the route, not only aiming. Drag back from the
 ball, let go to shoot.
 
 A [helder](https://github.com/helder/helder) game, in Haxe: one program
@@ -60,30 +61,63 @@ npx helder run src/Shots.hx -- search 16 '[[-0.5249, -0.8512, 3.65]]'   # the ne
 npx helder run src/Shots.hx -- trace 16 '[[-0.5249, -0.8512, 3.65]]'    # the ball's way, every quarter second
 npx helder run src/Shots.hx -- preview 1 0 -1 4         # the aim's preview of a shot
 npx helder run src/Shots.hx -- tune                     # how far a shot rolls on a flat green, by speed
+npx helder run src/Shots.hx -- finish 8 '[[-0.3663, -0.9305, 5.55]]'    # the steadiest putt holing it after these
+npx helder run src/Shots.hx -- survey 8                 # aces from the tee, an aim-at-the-cup player, each recorded shot's slack
+npx helder run src/Shots.hx -- noisy 8 24               # 24 rounds by a good player with a hand's errors: how often par
 ```
+
+`noisy` is how the pars were set: a player who knows the hole (it plays
+the recorded round's shots, or heads for where they would have left the
+ball, and takes the steadiest putt whenever one can hole it) but whose
+hand is off by about 1.5 degrees of aim, 4% of power and 0.07 s of timing.
+Par is what that player makes most of the time: nearly always on an
+island's first holes, about half the time on its last. Real players plan
+less well, so for them the holes are harder than the numbers below.
 
 ## The islands
 
-| | Hole | Par | Brings in |
-|---|---|---|---|
-| **Meadowdrift** (spring day) | 1 First Putt | 2 | the shot |
-| | 2 The Bend | 2 | banking off a rail |
-| | 3 Uphill | 2 | slopes |
-| | 4 Pinball | 2 | bumpers, kicking the ball away |
-| | 5 Sandy Shortcut | 2 | sand: the straight line, or round by the fast lane |
-| | 6 The Leap | 2 | a kicker over a gap |
-| **Copperwind Cliffs** (sunset) | 7 Sliders | 2 | blocks sliding across the lane |
-| | 8 Turnstile | 2 | turnstiles, turning opposite ways |
-| | 9 Crosswind | 2 | wind on a bridge without rails (in the air too) |
-| | 10 Booster Run | 2 | boosters up a slope too steep for a putt |
-| | 11 Lift Off | 3 | a lift: stop on it, ride up, shoot off |
-| | 12 Roundabout | 3 | a one-way gate: the cup's pen opens only from the far side |
-| **Lanternwater** (dusk) | 13 Skipping Stone | 2 | water (a stroke): over the pool, or down round it |
-| | 14 Wormhole | 2 | a portal to an island with no bridge |
-| | 15 Flip Switch | 3 | a switch in a bay opening the gate across the lane |
-| | 16 Brittle Bridge | 4 | crumbling tiles to the switch; back by the portal through the gate it opened |
-| | 17 Two Doors | 3 | one switch group: as one gate opens the other shuts, a plate between them |
-| | 18 Moonrise | 4 | portal, turnstile, switch and a gated pen together |
+Each island's holes run from easy to hard, the last of them hard. Par is
+set from the `noisy` player (above): the share of its rounds at par or
+better is the last column.
+
+| | Hole | Par | Par made | Brings in |
+|---|---|---|---|---|
+| **Meadowdrift** (spring day) | 1 First Putt | 2 | 100% | the shot: not too hard, the far end is open |
+|  | 2 The Bend | 2 | 92% | banking off a rail |
+|  | 3 Uphill | 2 | 100% | a slope, the cup off the ramp's line |
+|  | 4 Pinball | 2 | 92% | bumpers, kicking the ball away |
+|  | 5 Sandy Shortcut | 2 | 88% | sand: the straight line, or round by the fast lane |
+|  | 6 Terraces | 3 | 92% | two ramps across from each other: stop on each terrace |
+|  | 7 The Leap | 2 | 71% | a kicker over a gap |
+|  | 8 Carom | 3 | 75% | the cup in a pocket facing the block in front of it: bank round the block into the sand behind it |
+|  | 9 Hilltop Hop | 3 | 58% | risk or reward: a narrow bridge with no rails and sand, or the jump over the gap past the bumpers |
+| **Copperwind Cliffs** (sunset) | 10 Booster Run | 2 | 96% | boosters up a slope; the top has no back rail, a slider on it |
+|  | 11 Lift Off | 2 | 92% | a lift: stop on it, ride up, shoot off |
+|  | 12 Sliders | 2 | 75% | blocks sliding across the lane: timing |
+|  | 13 Turnstile | 2 | 79% | turnstiles, turning opposite ways |
+|  | 14 Roundabout | 3 | 88% | a one-way gate: the cup's pen opens only from the far side |
+|  | 15 Crosswind | 2 | 58% | wind on a bridge without rails (in the air too) |
+|  | 16 Gearbox | 3 | 71% | an L of turnstiles, a bumper in the corner to bank off |
+|  | 17 Updraft | 2 | 75% | a booster and a kicker, wind over the gap one way and over the green the other |
+|  | 18 Clockwork | 4 | 71% | lift, turnstile, wind and a one-way door into the cup's pen |
+| **Lanternwater** (dusk) | 19 Skipping Stone | 2 | 83% | water (a stroke): over the pool, or down round it |
+|  | 20 Wormhole | 2 | 75% | a portal to an island with no bridge |
+|  | 21 Lantern Falls | 4 | 75% | a waterfall: down three switchback ramps, the ball gaining speed on each; too fast and it goes over into the pools |
+|  | 22 Mirror Pools | 3 | 67% | two portals: the one in the way drops the ball in a pool, the other is banked into in its corner |
+|  | 23 Flip Switch | 3 | 50% | a switch in a bay opening the gate across the lane |
+|  | 24 Two Doors | 3 | 63% | one switch group: as one gate opens the other shuts |
+|  | 25 Brittle Bridge | 4 | 63% | crumbling tiles to the switch; back by the portal through the gate it opened |
+|  | 26 Lockstep | 3 | 54% | two gates, a plate right before each: the first opens the near one, the second shuts the far one |
+|  | 27 Moonrise | 5 | 25% | portal, turnstile, switch and a gated pen together |
+| **Frostglass Peaks** (winter) | 28 First Frost | 2 | 100% | ice: it hardly slows the ball |
+|  | 29 Ice Rink | 2 | 96% | banks on ice keep their speed: round the block to the corner |
+|  | 30 Curling | 2 | 83% | stones guarding the cup: banked round them on the ice |
+|  | 31 Frozen Portal | 2 | 75% | a turnstile before the portal, ice beyond it |
+|  | 32 Snowgate | 3 | 75% | a plate on ice: the ball can roll over it twice and flip it back |
+|  | 33 Icefall | 3 | ICEFALL | a frozen waterfall: down three drops, each landing's rail with a gap, right then left |
+|  | 34 Glacier Slide | 2 | 50% | sliders across ice: steady speed, true timing |
+|  | 35 Thin Ice | 3 | 46% | cracked strips over a pool, each falling once crossed, to an ice island |
+|  | 36 Aurora Summit | 4 | 33% | boosters, ice, a turnstile, a plate in a bay and a gated pen |
 
 Stars: three for par or better, two for one over, one for finishing.
 
@@ -98,7 +132,9 @@ Stars: three for par or better, two for one over, one for finishing.
   pinch to zoom, twist with two fingers to turn (the mouse: drag, the
   wheel). As a hole starts the camera flies from the cup back to the tee
   under the hole's card (a press skips it).
-- **Holes**: the hole's pill (top left) opens the scorecard. Falling off,
+- **Holes**: the hole's pill (top left) opens the scorecard: a page an
+  island (swipe, or its tab), its holes in a grid with their stars and
+  bests; a hole opens once the one before it is finished. Falling off,
   or into the water, puts the ball back where you hit it from, a stroke
   more. Best scores are saved on the device.
 

@@ -370,31 +370,7 @@ class Course {
 
 		// --- Copperwind Cliffs
 
-		// 10: two blocks sliding across the lane
-		{
-			name: "Sliders",
-			world: 1,
-			par: 2,
-			tee: p(0, 0.2),
-			cup: p(0, -7),
-			pieces: [
-				Flat(0, -3.5, 1.8, 9, 0), Mover(-0.45, -3.2, 0.7, 0.45, 0, 0.9, 0, 3.2, 0), Mover(0.45, -5.4, 0.7, 0.45, 0, -0.9, 0, 2.6, 0.5)
-			].concat(rails(-0.9, 1, 0.9, -8)),
-			tip: "Blocks slide to and fro: time your shot"
-		},
-		// 11: a turnstile across the lane, then a second turning the other way
-		{
-			name: "Turnstile",
-			world: 1,
-			par: 2,
-			tee: p(0, 0.3),
-			cup: p(0, -7.2),
-			pieces: [
-				Flat(0, -3.6, 2, 9.2, 0), Spinner(0, -2.8, 1.6, 0, 1.4, 0), Spinner(0, -5.2, 1.6, 0, -1.9, 0.8)
-			].concat(rails(-1, 1, 1, -8.2)),
-			tip: "Turnstiles knock the ball aside: go through the gap"
-		},
-		// 12: boosters up a slope too steep for a putt alone
+		// 10: boosters up a slope too steep for a putt alone
 		{
 			name: "Booster Run",
 			world: 1,
@@ -406,9 +382,9 @@ class Course {
 				Flat(0, -8.4, 2.4, 4.4, 1.6), Block(-0.8, -2.2, -0.68, -6.2, 0, 1.8), Block(0.68, -2.2, 0.8, -6.2, 0, 1.8),
 				Mover(-0.75, -8.9, 0.6, 0.3, 1.6, 1.5, 0, 3.0, 0), Post(-0.1, -9.9, 0.1, 1.6)
 			].concat(rails(-0.8, 1, 0.8, -2.2, 0, "swe")).concat(rails(-1.2, -6.2, 1.2, -10.6, 1.6, "we")),
-			tip: "Boosters speed up a ball rolling over them: the top has no back rail"
+			tip: "Boosters speed the ball up the slope: the top has no back rail, and a slider"
 		},
-		// 13: a lift up to the ledge with the cup: stop on it, ride up, shoot off
+		// 11: a lift up to the ledge with the cup: stop on it, ride up, shoot off
 		{
 			name: "Lift Off",
 			world: 1,
@@ -422,7 +398,44 @@ class Course {
 				.concat(rails(-1.2, -4.7, 1.2, -8.5, 1.2, "nwe")),
 			tip: "Stop on the lift and ride it up"
 		},
-		// 14: a gusty bridge without rails: aim into the wind
+		// 12: two blocks sliding across the lane
+		{
+			name: "Sliders",
+			world: 1,
+			par: 2,
+			tee: p(0, 0.2),
+			cup: p(0, -7),
+			pieces: [
+				Flat(0, -3.5, 1.8, 9, 0), Mover(-0.45, -3.2, 0.7, 0.45, 0, 0.9, 0, 3.2, 0), Mover(0.45, -5.4, 0.7, 0.45, 0, -0.9, 0, 2.6, 0.5)
+			].concat(rails(-0.9, 1, 0.9, -8)),
+			tip: "Blocks slide to and fro: time your shot"
+		},
+		// 13: a turnstile across the lane, then a second turning the other way
+		{
+			name: "Turnstile",
+			world: 1,
+			par: 2,
+			tee: p(0, 0.3),
+			cup: p(0, -7.2),
+			pieces: [
+				Flat(0, -3.6, 2, 9.2, 0), Spinner(0, -2.8, 1.6, 0, 1.4, 0), Spinner(0, -5.2, 1.6, 0, -1.9, 0.8)
+			].concat(rails(-1, 1, 1, -8.2)),
+			tip: "Turnstiles knock the ball aside: go through the gap"
+		},
+		// 14: the cup in a pen whose only door opens inward from the far side
+		{
+			name: "Roundabout",
+			world: 1,
+			par: 3,
+			tee: p(0, 0.4),
+			cup: p(0, -3.6),
+			pieces: [
+				Flat(0, -2.75, 5, 7.5, 0), Wall(-1, -2.4, 1, -2.28, 0), Wall(-1, -4.8, -1.08 + 0.2, -2.28, 0), Wall(1.08 - 0.2, -4.8, 1, -2.28, 0),
+				Wall(-1, -4.92, -0.4, -4.8, 0), Wall(0.4, -4.92, 1, -4.8, 0), OneWay(-0.4, -4.86, 0.4, -4.86, 0, 0, 1), Bumper(0, -5.9, 0.16, 0)
+			].concat(rails(-2.5, 1, 2.5, -6.5)),
+			tip: "Arrows mark a one-way gate"
+		},
+		// 15: a gusty bridge without rails: aim into the wind
 		{
 			name: "Crosswind",
 			world: 1,
@@ -434,7 +447,7 @@ class Course {
 			].concat(rails(-0.9, 1, 0.9, -2, 0, "swe")).concat(rails(-1.2, -6, 1.2, -8.8, 0, "nwe")),
 			tip: "Wind pushes the ball, in the air too: aim into it"
 		},
-		// 15: an L of turnstiles: one in the corner, one in the leg to the cup, a bumper in the corner to bank off
+		// 16: an L of turnstiles: one in the corner, one in the leg to the cup, a bumper in the corner to bank off
 		{
 			name: "Gearbox",
 			world: 1,
@@ -447,19 +460,6 @@ class Course {
 			].concat([Wall(-0.9, 1.2, -0.78, -6.0, 0), Wall(-0.9, 1.2, 0.9, 1.08, 0), Wall(0.78, 1.2, 0.9, -4.4, 0), Wall(-0.9, -6.0, 5.6, -5.88, 0)])
 				.concat([Wall(0.9, -4.4, 5.6, -4.52, 0), Wall(5.48, -4.4, 5.6, -6.0, 0)]),
 			tip: "Watch both turnstiles: go when the way is clear"
-		},
-		// 16: the cup in a pen whose only door opens inward from the far side
-		{
-			name: "Roundabout",
-			world: 1,
-			par: 3,
-			tee: p(0, 0.4),
-			cup: p(0, -3.6),
-			pieces: [
-				Flat(0, -2.75, 5, 7.5, 0), Wall(-1, -2.4, 1, -2.28, 0), Wall(-1, -4.8, -1.08 + 0.2, -2.28, 0), Wall(1.08 - 0.2, -4.8, 1, -2.28, 0),
-				Wall(-1, -4.92, -0.4, -4.8, 0), Wall(0.4, -4.92, 1, -4.8, 0), OneWay(-0.4, -4.86, 0.4, -4.86, 0, 0, 1), Bumper(0, -5.9, 0.16, 0)
-			].concat(rails(-2.5, 1, 2.5, -6.5)),
-			tip: "Arrows mark a one-way gate"
 		},
 		// 17: a booster and a kicker over a gap the wind blows across, a slider before the cup
 		{
@@ -521,35 +521,7 @@ class Course {
 			].concat(rails(-1, 1, 1, -3.8)).concat(rails(3.5, -4.8, 5.7, -8.4)),
 			tip: "Portals keep the ball's speed"
 		},
-		// 21: two portals: the one in the way drops the ball in a pool; the other, tucked in the corner behind a stub of rail, goes to the cup
-		{
-			name: "Mirror Pools",
-			world: 2,
-			par: 3,
-			tee: p(0.8, 0.4),
-			cup: p(4.1, -7.0),
-			pieces: [
-				Flat(0, -1.5, 3.2, 5, 0), Portal(-0.1, -2.2, 0, 0.3, -7.0, 0, 0, -1), Portal(-1.25, -3.55, 0, 2.8, -6.3, 0, 1, 0),
-				Water(0.3, -7.2, 1.8, 1.8, -0.15), Flat(3.5, -6.5, 2.4, 2.4, 0), Bumper(3.9, -6.0, 0.14, 0)
-			].concat(rails(-1.6, 1, 1.6, -4)).concat([Wall(-1.6, -2.9, -0.9, -3.02, 0), Post(-0.75, -3.5, 0.1, 0)])
-				.concat(rails(2.3, -5.3, 4.7, -7.7)),
-			tip: "Look where each portal comes out"
-		},
-		// 22: a closed gate across the lane; the switch is in the bay beside it
-		{
-			name: "Flip Switch",
-			world: 2,
-			par: 3,
-			tee: p(0, 0.3),
-			cup: p(0, -7.0),
-			pieces: [
-				Flat(0, -3.6, 2, 9.2, 0), Flat(-1.9, -2.7, 1.8, 1.6, 0), Sand(-2.2, -2.7, 1.2, 1.4, 0), Switch(-1.3, -2.75, 0, 0), Gate(-1, -4.6, 1, -4.48, 0, 0, false)
-			].concat(rails(-1, 1, 1, -8.2, 0, "nse")).concat([Wall(-1, -1.9, -0.88, 1, 0), Wall(-1, -8.2, -0.88, -3.5, 0)])
-				.concat(rails(-2.8, -1.9, -1, -3.5, 0, "nsw")),
-			tip: "Roll over a switch to open its gates"
-		},
-
-		// 23: a cascade: down three ramps in switchbacks, the ball gaining speed on each; the landings
+		// 21: a cascade: down three ramps in switchbacks, the ball gaining speed on each; the landings
 		// open on the falls' side, a pool under each: too fast and it goes over
 		{
 			name: "Lantern Falls",
@@ -567,6 +539,33 @@ class Course {
 				.concat([Wall(4.5, -3.6, 5.8, -3.72, 0.8), Wall(5.68, -3.6, 5.8, -6.2, 0.8)]).concat(rails(2.2, -8.7, 5.8, -11.3, 0, "nwe"))
 				.concat([Wall(2.2, -8.7, 4.43, -8.82, 0)]),
 			tip: "Downhill all the way: the ball keeps rolling, so turn it gently"
+		},
+		// 22: two portals: the one in the way drops the ball in a pool; the other, tucked in the corner behind a stub of rail, goes to the cup
+		{
+			name: "Mirror Pools",
+			world: 2,
+			par: 3,
+			tee: p(0.8, 0.4),
+			cup: p(4.1, -7.0),
+			pieces: [
+				Flat(0, -1.5, 3.2, 5, 0), Portal(-0.1, -2.2, 0, 0.3, -7.0, 0, 0, -1), Portal(-1.25, -3.55, 0, 2.8, -6.3, 0, 1, 0),
+				Water(0.3, -7.2, 1.8, 1.8, -0.15), Flat(3.5, -6.5, 2.4, 2.4, 0), Bumper(3.9, -6.0, 0.14, 0)
+			].concat(rails(-1.6, 1, 1.6, -4)).concat([Wall(-1.6, -2.9, -0.9, -3.02, 0), Post(-0.75, -3.5, 0.1, 0)])
+				.concat(rails(2.3, -5.3, 4.7, -7.7)),
+			tip: "Look where each portal comes out"
+		},
+		// 23: a closed gate across the lane; the switch is in the bay beside it
+		{
+			name: "Flip Switch",
+			world: 2,
+			par: 3,
+			tee: p(0, 0.3),
+			cup: p(0, -7.0),
+			pieces: [
+				Flat(0, -3.6, 2, 9.2, 0), Flat(-1.9, -2.7, 1.8, 1.6, 0), Sand(-2.2, -2.7, 1.2, 1.4, 0), Switch(-1.3, -2.75, 0, 0), Gate(-1, -4.6, 1, -4.48, 0, 0, false)
+			].concat(rails(-1, 1, 1, -8.2, 0, "nse")).concat([Wall(-1, -1.9, -0.88, 1, 0), Wall(-1, -8.2, -0.88, -3.5, 0)])
+				.concat(rails(-2.8, -1.9, -1, -3.5, 0, "nsw")),
+			tip: "Roll over a switch to open its gates"
 		},
 		// 24: two doors on one switch group: as one opens the other shuts, a plate between them
 		{
@@ -617,7 +616,7 @@ class Course {
 		{
 			name: "Moonrise",
 			world: 2,
-			par: 4,
+			par: 5,
 			tee: p(0, 0.3),
 			cup: p(3.1, -7.2, 0.8),
 			pieces: [
@@ -677,7 +676,38 @@ class Course {
 			].concat(rails(-1, 1, 1, -3.4)).concat(rails(2.1, -1.7, 4.5, -7.7, 0, "nwe")).concat([Wall(2.1, -1.7, 4.5, -1.82, 0)]),
 			tip: "A portal keeps the ball's speed, and so does ice"
 		},
-		// 32: blocks sliding across an icy lane: the ball keeps its speed, so the timing is true
+		// 32: a rink of ice, a plate in it and a gate out of it: roll over the plate once, not twice
+		{
+			name: "Snowgate",
+			world: 3,
+			par: 3,
+			tee: p(-0.9, -0.5),
+			cup: p(0, -6.2),
+			pieces: [
+				Flat(0, -2, 3.2, 4, 0), Ice(0, -2, 3.2, 4, 0), Switch(1.0, -1.4, 0, 0), Sand(-1.1, -3.3, 0.8, 1.2, 0), Gate(-0.4, -4.0, 0.4, -3.88, 0, 0, false),
+				Flat(0, -5.5, 1.6, 3, 0), Bumper(0.5, -2.6, 0.14, 0)
+			].concat(rails(-1.6, 0, 1.6, -4, 0, "swe")).concat([Wall(-1.6, -4, -0.4, -3.88, 0), Wall(0.4, -4, 1.6, -3.88, 0)])
+				.concat(rails(-0.8, -4, 0.8, -7, 0, "nwe")),
+			tip: "On ice the ball can cross a plate twice: and flip it back"
+		},
+		// 33: a frozen cascade: down three drops, landings of ice railed but for a gap in each, right then left
+		{
+			name: "Icefall",
+			world: 3,
+			par: 3,
+			tee: p(-0.5, 0.4, 2.4),
+			cup: p(0.5, -10.1, 0.6),
+			pieces: [
+				Flat(0, 0, 2.4, 2, 2.4), RampZ(0, -1, -2.5, 2.4, 2.4, 1.8), Flat(0, -3.25, 2.4, 1.5, 1.8), Ice(0, -3.25, 2.4, 1.5, 1.8),
+				RampZ(0.8, -4.0, -5.5, 0.8, 1.8, 1.2), Flat(0, -6.25, 2.4, 1.5, 1.2), Ice(0, -6.25, 2.4, 1.5, 1.2), RampZ(-0.8, -7.0, -8.5, 0.8, 1.2, 0.6),
+				Flat(0, -9.75, 2.4, 2.5, 0.6), Block(0.28, -4.0, 0.4, -5.5, 1.2, 2.0), Block(1.2, -4.0, 1.32, -5.5, 1.2, 2.0),
+				Block(-1.32, -7.0, -1.2, -8.5, 0.6, 1.4), Block(-0.4, -7.0, -0.28, -8.5, 0.6, 1.4), Bumper(-0.3, -10.4, 0.15, 0.6)
+			].concat(rails(-1.2, 1, 1.2, -1, 2.4, "swe")).concat([Wall(-1.2, -4.0, 0.4, -3.88, 1.8), Wall(-0.4, -7.0, 1.2, -6.88, 1.2)])
+				.concat([Wall(-1.32, -2.5, -1.2, -4.0, 1.8), Wall(1.2, -2.5, 1.32, -4.0, 1.8), Wall(-1.32, -5.5, -1.2, -7.0, 1.2), Wall(1.2, -5.5, 1.32, -7.0, 1.2)])
+				.concat(rails(-1.2, -8.5, 1.2, -11, 0.6, "nwe")),
+			tip: "Downhill on ice: it never stops, so bank it through the gaps"
+		},
+		// 34: blocks sliding across an icy lane: the ball keeps its speed, so the timing is true
 		{
 			name: "Glacier Slide",
 			world: 3,
@@ -690,7 +720,7 @@ class Course {
 			].concat(rails(-1, 1, 1, -9, 0, "swe")),
 			tip: "Steady speed on ice: time it past the sliders"
 		},
-		// 33: cracked ice over the pool: up one strip, along the next, to the ice island; each strip falls once crossed
+		// 35: cracked ice over the pool: up one strip, along the next, to the ice island; each strip falls once crossed
 		{
 			name: "Thin Ice",
 			world: 3,
@@ -704,36 +734,6 @@ class Course {
 			].concat(rails(-1.2, 1, 1.2, -1.6, 0, "swe")).concat([Wall(-1.2, -1.6, -0.95, -1.48, 0), Wall(-0.25, -1.6, 1.2, -1.48, 0)])
 				.concat(rails(-0.3, -4.5, 2.3, -7.0, 0, "nwe")).concat([Wall(-0.3, -4.5, 0.85, -4.62, 0)]),
 			tip: "Cracked tiles fall once the ball has crossed them"
-		},
-		// 34: a frozen cascade: down three drops, landings of ice with a gap in each rail, left then right
-		{
-			name: "Icefall",
-			world: 3,
-			par: 3,
-			tee: p(-0.5, 0.4, 2.4),
-			cup: p(0.5, -10.1, 0.6),
-			pieces: [
-				Flat(0, 0, 2.4, 2, 2.4), RampZ(0, -1, -2.5, 2.4, 2.4, 1.8), Flat(0, -3.25, 2.4, 1.5, 1.8), Ice(0, -3.25, 2.4, 1.5, 1.8),
-				RampZ(0.8, -4.0, -5.5, 0.8, 1.8, 1.2), Flat(0, -6.25, 2.4, 1.5, 1.2), Ice(0, -6.25, 2.4, 1.5, 1.2), RampZ(-0.8, -7.0, -8.5, 0.8, 1.2, 0.6),
-				Flat(0, -9.75, 2.4, 2.5, 0.6), Block(0.28, -4.0, 0.4, -5.5, 1.2, 2.0), Block(1.2, -4.0, 1.32, -5.5, 1.2, 2.0),
-				Block(-1.32, -7.0, -1.2, -8.5, 0.6, 1.4), Block(-0.4, -7.0, -0.28, -8.5, 0.6, 1.4), Bumper(-0.3, -10.4, 0.15, 0.6)
-			].concat(rails(-1.2, 1, 1.2, -1, 2.4, "swe")).concat([Wall(-1.2, -4.0, 0.4, -3.88, 1.8), Wall(-0.4, -7.0, 1.2, -6.88, 1.2)])
-				.concat(rails(-1.2, -8.5, 1.2, -11, 0.6, "nwe")),
-			tip: "Downhill on ice: it never stops, so bank it through the gaps"
-		},
-		// 35: a rink of ice, a plate in it and a gate out of it: roll over the plate once, not twice
-		{
-			name: "Snowgate",
-			world: 3,
-			par: 3,
-			tee: p(-0.9, -0.5),
-			cup: p(0, -6.2),
-			pieces: [
-				Flat(0, -2, 3.2, 4, 0), Ice(0, -2, 3.2, 4, 0), Switch(1.0, -1.4, 0, 0), Sand(-1.1, -3.3, 0.8, 1.2, 0), Gate(-0.4, -4.0, 0.4, -3.88, 0, 0, false),
-				Flat(0, -5.5, 1.6, 3, 0), Bumper(0.5, -2.6, 0.14, 0)
-			].concat(rails(-1.6, 0, 1.6, -4, 0, "swe")).concat([Wall(-1.6, -4, -0.4, -3.88, 0), Wall(0.4, -4, 1.6, -3.88, 0)])
-				.concat(rails(-0.8, -4, 0.8, -7, 0, "nwe")),
-			tip: "On ice the ball can cross a plate twice: and flip it back"
 		},
 		// 36: up the boosted ramp to the icy summit, round the turnstile to the plate in its bay, into the pen by the gate it opens
 		{

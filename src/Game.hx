@@ -164,7 +164,7 @@ class Game {
 	// the fly-over's length (s)
 	static inline var INTRO = 3.4;
 	// the hole behind the title, and how far above it the camera looks there (a share of its distance)
-	static inline var TITLE = 7;
+	static final TITLE = Rounds.indexOf("Turnstile");
 	static inline var TITLE_LIFT = 0.4;
 	static inline var TITLE_LIFT_WIDE = 0.27;
 	var aimDir = new Vec3(0, 0, -1);
@@ -208,7 +208,6 @@ class Game {
 	public function new() {
 		save = new Save();
 		best = signal(save.best(Course.holes));
-		if (Sys.getEnv("LS_FAKE") != null) best([for (i in 0...Course.holes.length) i < 10 ? Course.holes[i].par + (i % 3) : 0]); // TEMP
 		eye = world.node("eye");
 		camera = Camera.attach(eye, Camera.perspective(1.0, 0.1, 200));
 		sun = world.node("sun");

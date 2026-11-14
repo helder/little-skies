@@ -36,7 +36,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 185x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "16"
+            TextNode#text 29,25 18x22 "25"
           Node#view 66,19 119x35
             TextNode#text 66,19 119x13 "LANTERNWATER"
             TextNode#text 66,32 119x22 "Brittle Bridge"
@@ -64,7 +64,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 170x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "34"
+            TextNode#text 29,25 18x22 "33"
           Node#view 66,19 104x35
             TextNode#text 66,19 104x13 "FROSTGLASS PEAKS"
             TextNode#text 66,32 104x22 "Icefall"
@@ -92,14 +92,14 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 144x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "18"
+            TextNode#text 29,25 18x22 "27"
           Node#view 66,19 78x35
             TextNode#text 66,19 78x13 "LANTERNWATER"
             TextNode#text 66,32 78x22 "Moonrise"
         Node#score 250,12 126x51
           Node#view 266,18 20x39
             TextNode#text 266,18 20x14 "PAR"
-            TextNode#text 271,32 10x25 "4"
+            TextNode#text 271,32 10x25 "5"
           Node#view 300,18 1x39
           Node#view 315,18 45x39
             TextNode#text 315,18 45x14 "STROKES"
@@ -148,7 +148,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 177x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "12"
+            TextNode#text 29,25 18x22 "14"
           Node#view 66,19 111x35
             TextNode#text 66,19 111x13 "COPPERWIND CLIFFS"
             TextNode#text 66,32 111x22 "Roundabout"
@@ -178,7 +178,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 185x48
           Node#view 20,18 36x36
-            TextNode#text 29,25 18x22 "13"
+            TextNode#text 29,25 18x22 "19"
           Node#view 66,19 119x35
             TextNode#text 66,19 119x13 "LANTERNWATER"
             TextNode#text 66,32 119x22 "Skipping Stone"
@@ -206,7 +206,7 @@ Node#root 0,0 390x844
       Node#view 14,12 362x51
         Node#menu 14,12 177x48
           Node#view 20,18 36x36
-            TextNode#text 34,25 9x22 "8"
+            TextNode#text 29,25 18x22 "13"
           Node#view 66,19 111x35
             TextNode#text 66,19 111x13 "COPPERWIND CLIFFS"
             TextNode#text 66,32 111x22 "Turnstile"
@@ -371,7 +371,7 @@ Node#root 0,0 390x844
                     Node#hole-10 26,385 107x92
                       Node#view 70,393 20x25
                         TextNode#text 70,393 20x25 "10"
-                      TextNode#text 59,421 42x13 "Sliders"
+                      TextNode#text 47,421 66x13 "Booster Run"
                       Node#view 55,437 50x16
                         ImageNode#image 55,437 16x16
                         ImageNode#image 72,437 16x16
@@ -380,7 +380,7 @@ Node#root 0,0 390x844
                     Node#hole-11 141,385 108x92
                       Node#view 185,393 20x25
                         TextNode#text 185,393 20x25 "11"
-                      TextNode#text 168,421 54x13 "Turnstile"
+                      TextNode#text 171,421 48x13 "Lift Off"
                       Node#view 170,437 50x16
                         ImageNode#image 170,437 16x16
                         ImageNode#image 187,437 16x16
@@ -389,7 +389,7 @@ Node#root 0,0 390x844
                     Node#hole-12 256,385 108x92
                       Node#view 300,393 20x25
                         TextNode#text 300,393 20x25 "12"
-                      TextNode#text 277,421 66x13 "Booster Run"
+                      TextNode#text 289,421 42x13 "Sliders"
                       Node#view 285,437 50x16
                         ImageNode#image 285,437 16x16
                         ImageNode#image 302,437 16x16
@@ -398,7 +398,7 @@ Node#root 0,0 390x844
                     Node#hole-13 26,484 107x92
                       Node#view 70,492 20x25
                         TextNode#text 70,492 20x25 "13"
-                      TextNode#text 56,520 48x13 "Lift Off"
+                      TextNode#text 53,520 54x13 "Turnstile"
                       Node#view 55,536 50x16
                         ImageNode#image 55,536 16x16
                         ImageNode#image 72,536 16x16
@@ -407,26 +407,26 @@ Node#root 0,0 390x844
                     Node#hole-14 141,484 108x92
                       Node#view 185,492 20x25
                         TextNode#text 185,492 20x25 "14"
-                      TextNode#text 168,520 54x13 "Crosswind"
+                      TextNode#text 165,520 60x13 "Roundabout"
                       Node#view 170,536 50x16
                         ImageNode#image 170,536 16x16
                         ImageNode#image 187,536 16x16
                         ImageNode#image 204,536 16x16
-                      TextNode#text 156,555 77x13 "best 3 · par 2"
+                      TextNode#text 156,555 77x13 "best 4 · par 3"
                     Node#hole-15 256,484 108x92
                       Node#view 300,492 20x25
                         TextNode#text 300,492 20x25 "15"
-                      TextNode#text 289,520 42x13 "Gearbox"
+                      TextNode#text 283,520 54x13 "Crosswind"
                       Node#view 285,536 50x16
                         ImageNode#image 285,536 16x16
                         ImageNode#image 302,536 16x16
                         ImageNode#image 319,536 16x16
-                      TextNode#text 296,555 28x13 "par 3"
+                      TextNode#text 296,555 28x13 "par 2"
                     Node#hole-16 26,583 107x92
                       Node#view 60,608 39x25
                         TextNode#text 60,608 20x25 "16"
                         ImageNode#image 85,613 14x14
-                      TextNode#text 50,636 60x15 "Roundabout"
+                      TextNode#text 59,636 42x15 "Gearbox"
                     Node#hole-17 141,583 108x92
                       Node#view 175,608 39x25
                         TextNode#text 175,608 20x25 "17"
@@ -448,7 +448,7 @@ Node#root 0,0 390x844
                       Node#view 382,347 64x16
                         ImageNode#image 382,348 14x14
                         TextNode#text 400,347 46x16 "0 of 27"
-                      TextNode#text 566,348 126x15 "0 of 9 holes · par 28"
+                      TextNode#text 566,348 126x15 "0 of 9 holes · par 29"
                   Node#view 368,385 338x290
                     Node#hole-19 368,385 107x92
                       Node#view 402,410 39x25
@@ -464,17 +464,17 @@ Node#root 0,0 390x844
                       Node#view 633,410 39x25
                         TextNode#text 633,410 20x25 "21"
                         ImageNode#image 658,415 14x14
-                      TextNode#text 616,438 72x15 "Mirror Pools"
+                      TextNode#text 613,438 78x15 "Lantern Falls"
                     Node#hole-22 368,484 107x92
                       Node#view 402,509 39x25
                         TextNode#text 402,509 20x25 "22"
                         ImageNode#image 427,514 14x14
-                      TextNode#text 389,537 66x15 "Flip Switch"
+                      TextNode#text 386,537 72x15 "Mirror Pools"
                     Node#hole-23 483,484 108x92
                       Node#view 517,509 39x25
                         TextNode#text 517,509 20x25 "23"
                         ImageNode#image 542,514 14x14
-                      TextNode#text 498,537 78x15 "Lantern Falls"
+                      TextNode#text 504,537 66x15 "Flip Switch"
                     Node#hole-24 598,484 108x92
                       Node#view 633,509 39x25
                         TextNode#text 633,509 20x25 "24"
@@ -532,22 +532,22 @@ Node#root 0,0 390x844
                       Node#view 859,509 39x25
                         TextNode#text 859,509 20x25 "32"
                         ImageNode#image 884,514 14x14
-                      TextNode#text 840,537 78x15 "Glacier Slide"
+                      TextNode#text 855,537 48x15 "Snowgate"
                     Node#hole-33 940,484 108x92
                       Node#view 975,509 39x25
                         TextNode#text 975,509 20x25 "33"
                         ImageNode#image 1000,514 14x14
-                      TextNode#text 970,537 48x15 "Thin Ice"
+                      TextNode#text 973,537 42x15 "Icefall"
                     Node#hole-34 710,583 107x92
                       Node#view 744,608 39x25
                         TextNode#text 744,608 20x25 "34"
                         ImageNode#image 769,613 14x14
-                      TextNode#text 743,636 42x15 "Icefall"
+                      TextNode#text 725,636 78x15 "Glacier Slide"
                     Node#hole-35 825,583 108x92
                       Node#view 859,608 39x25
                         TextNode#text 859,608 20x25 "35"
                         ImageNode#image 884,613 14x14
-                      TextNode#text 855,636 48x15 "Snowgate"
+                      TextNode#text 855,636 48x15 "Thin Ice"
                     Node#hole-36 940,583 108x92
                       Node#view 975,608 39x25
                         TextNode#text 975,608 20x25 "36"
