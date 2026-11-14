@@ -29,20 +29,27 @@ class Shots {
 		switch args[0] {
 			case "tune": tune();
 			case "search": search(args.slice(1));
-			case "trace": follow(Std.parseInt(args[1]) - 1, haxe.Json.parse(args[2]));
-			case "noisy": noisy(Std.parseInt(args[1]) - 1, args.length > 2 ? Std.parseInt(args[2]) : 24, args.length > 3 ? Std.parseFloat(args[3]) : 1.0);
+			case "trace": follow(number(args[1]), haxe.Json.parse(args[2]));
+			case "noisy": noisy(number(args[1]), args.length > 2 ? Std.parseInt(args[2]) ?? 24 : 24, args.length > 3 ? Std.parseFloat(args[3]) : 1.0);
 			case "finish":
-				var hole = Course.holes[Std.parseInt(args[1]) - 1];
+				var hole = Course.holes[number(args[1])];
 				var prefix:Array<Array<Float>> = args.length > 2 && args[2] != "" ? haxe.Json.parse(args[2]) : [];
 				var base = Rounds.replay(hole, prefix).sim;
 				var shot = steadiest(base, new Sim(hole), base.strokes + 1, Rounds.WAIT);
 				Sys.println(shot == null ? "none" : haxe.Json.stringify([for (i in 0...3) Math.round(shot[i] * 10000) / 10000]));
-			case "survey": for (a in args.slice(1)) survey(Std.parseInt(a) - 1);
-			case "preview": preview(Std.parseInt(args[1]) - 1, Std.parseFloat(args[2]), Std.parseFloat(args[3]), Std.parseFloat(args[4]));
+			case "survey": for (a in args.slice(1)) survey(number(a));
+			case "preview": preview(number(args[1]), Std.parseFloat(args[2]), Std.parseFloat(args[3]), Std.parseFloat(args[4]));
 			case _:
 				Sys.println("Shots tune | preview N dx dz speed | trace N shots | search N [shots] [x z] [wide]");
 				Sys.exit(2);
 		}
+	}
+
+	// a hole's index by its number on the command line (1 the first)
+	static function number(arg:String):Int {
+		var n = Std.parseInt(arg);
+		if (n == null || Course.hole(n - 1) == null) throw 'no hole "$arg" (1 to ${Course.holes.length})';
+		return n - 1;
 	}
 
 	static function fmt(f:Float):String
@@ -102,7 +109,7 @@ class Shots {
 	// a grid of directions and speeds after the shots given: those that hole it, else the nearest to a point
 	static function search(all:Array<String>) {
 		var args = all.filter(a -> a != "wide" && a != "near" && !StringTools.startsWith(a, "waits="));
-		var index = Std.parseInt(args[0]) - 1;
+		var index = number(args[0]);
 		var hole = Course.holes[index];
 		var prefix:Array<Array<Float>> = args.length > 1 && args[1] != "" ? haxe.Json.parse(args[1]) : [];
 		var tx = args.length > 3 ? Std.parseFloat(args[2]) : hole.cup.x, tz = args.length > 3 ? Std.parseFloat(args[3]) : hole.cup.z;
@@ -189,7 +196,7 @@ class Shots {
 			}
 			var p = start.ball.position;
 			var base = Math.atan2(hole.cup.x - p.x, -(hole.cup.z - p.z));
-			var bestD = 1e9, bestShot:Array<Float> = null;
+			var bestD = 1e9, bestShot:Null<Array<Float>> = null;
 			for (ai in 0...21)
 				for (si in 0...23) {
 					var a = base + (ai - 10) * 1.5 * Math.PI / 180, speed = 0.6 + si * 0.29;
@@ -202,6 +209,7 @@ class Shots {
 						bestShot = shot;
 					}
 				}
+			if (bestShot == null) break;
 			naive.push(bestShot);
 		}
 		if (naiveStrokes < 0) {
@@ -325,10 +333,10 @@ class Shots {
 	}
 
 	// the shot from base ending nearest (x, y, z) with the gates as given (null: any), on a grid toward it and all round
-	static function toward(base:Sim, scratch:Sim, x:Float, y:Float, z:Float, gates:Array<Bool>, wait:Int):Array<Float> {
+	static function toward(base:Sim, scratch:Sim, x:Float, y:Float, z:Float, gates:Null<Array<Bool>>, wait:Int):Null<Array<Float>> {
 		var p = base.ball.position;
 		var aim = Math.atan2(x - p.x, -(z - p.z));
-		var best:Array<Float> = null, bestD = 1e18;
+		var best:Null<Array<Float>> = null, bestD = 1e18;
 		for (pass in 0...2) {
 			var na = pass == 0 ? 41 : 72, ns = pass == 0 ? 24 : 16;
 			for (ai in 0...na)
@@ -356,6 +364,8 @@ class Shots {
 	static function noisy(index:Int, trials:Int, skill:Float) {
 		var hole = Course.holes[index];
 		var plan = Rounds.of(index) ?? [];
+		// (its waypoints are the plan's: none without one)
+		if (plan.length == 0) throw 'hole ${index + 1} has no recorded round';
 		var moving = false;
 		for (pc in hole.pieces)
 			switch pc {
@@ -397,6 +407,11 @@ class Shots {
 						var w = points[Std.int(Math.min(next, points.length - 1))];
 						shot = toward(sim, scratch, w.x, w.y, w.z, w.gates, wait);
 					}
+				}
+				// (no shot at all: given up)
+				if (shot == null) {
+					strokes = 11;
+					break;
 				}
 				var a = Math.atan2(shot[0], -shot[1]) + gauss() * 1.5 * skill * Math.PI / 180;
 				var sp = shot[2] * (1 + gauss() * 0.04 * skill);

@@ -52,10 +52,10 @@ class Rounds {
 
 	// a hole's recorded shots (null: none, or no such hole)
 	public static function of(index:Int):Null<Array<Array<Float>>> {
-		if (index < 0 || index >= Course.holes.length) return null;
-		var name = Course.holes[index].name;
+		var hole = Course.hole(index);
+		if (hole == null) return null;
 		for (r in rounds)
-			if (r.hole == name) return r.shots;
+			if (r.hole == hole.name) return r.shots;
 		return null;
 	}
 

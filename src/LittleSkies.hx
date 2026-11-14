@@ -321,9 +321,9 @@ class LittleSkies implements Markup {
 		// (the next island, opened by finishing this one's last hole for the first time;
 		// none after the last island: Show's children are built either way)
 		var opened = islandEnd && !last && before == 0;
-		var nextWorld = Course.worlds[w + 1];
+		var nextWorld = Course.world(w + 1), nextHole = Course.hole(i + 1);
 		var nextName = nextWorld == null ? "" : nextWorld.name;
-		var nextColor = last ? deep(i) : deep(i + 1);
+		var nextColor = nextHole == null ? deep(i) : hex(Course.worlds[nextHole.world].deep);
 		function star(k:Int):View {
 			var d = 0.25 + k * 0.22, size = k == 1 ? 62 : 50;
 			return <view slot={n > k ? "star" : "fade"} margin-top={k == 1 ? 0 : 12}
