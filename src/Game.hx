@@ -649,8 +649,17 @@ class Game {
 			i++;
 		}
 		var c = sim.cup;
-		part(k.rim, new Vec3(c.x, c.y - 0.002, c.z), new Vec3(2 * Sim.CUP + 0.06, 0.006, 2 * Sim.CUP + 0.06));
-		part(k.hole, new Vec3(c.x, c.y - 0.001, c.z), new Vec3(2 * Sim.CUP, 0.006, 2 * Sim.CUP));
+		// (a cup on sand or ice: its rim and hole over that sheet, not under it)
+		var lift = 0.0;
+		for (piece in h.pieces)
+			switch piece {
+				case Sand(x, z, w, d, y) | Ice(x, z, w, d, y)
+					if (Math.abs(c.x - x) < w / 2 + Sim.CUP && Math.abs(c.z - z) < d / 2 + Sim.CUP && Math.abs(c.y - y) < 0.05):
+					lift = 0.007;
+				case _:
+			}
+		part(k.rim, new Vec3(c.x, c.y - 0.002 + lift, c.z), new Vec3(2 * Sim.CUP + 0.06, 0.006, 2 * Sim.CUP + 0.06));
+		part(k.hole, new Vec3(c.x, c.y - 0.001 + lift, c.z), new Vec3(2 * Sim.CUP, 0.006, 2 * Sim.CUP));
 		flagPole = part(k.pole, new Vec3(c.x, c.y, c.z), new Vec3(0.025, 1.0, 0.025));
 		flag = world.node("flag", course);
 		flag.position = new Vec3(c.x, c.y + 0.72, c.z);
