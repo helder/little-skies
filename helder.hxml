@@ -1,0 +1,21 @@
+# Haxe's null safety, Strict, on the game's own modules (src/*.hx), one
+# line a module: helder's and the std library's untouched. A new module
+# gets its own line. The *.test.hx and *.story.hx files carry
+# @:nullSafety(Strict) on their declarations instead: helder test reads
+# no helder.hxml.
+--macro nullSafety("Aim", Strict)
+--macro nullSafety("Clouds", Strict)
+--macro nullSafety("Course", Strict)
+--macro nullSafety("Creatures", Strict)
+--macro nullSafety("Dressing", Strict)
+--macro nullSafety("Game", Strict)
+--macro nullSafety("Kit", Strict)
+--macro nullSafety("LittleSkies", Strict)
+--macro nullSafety("Particles", Strict)
+--macro nullSafety("Rounds", Strict)
+--macro nullSafety("Save", Strict)
+--macro nullSafety("Shots", Strict)
+--macro nullSafety("Sim", Strict)
+--macro nullSafety("Sounds", Strict)
+--macro nullSafety("TiltShift", Strict)
+--macro nullSafety("Turf", Strict)

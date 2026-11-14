@@ -129,6 +129,16 @@ class Course {
 		return out;
 	}
 
+	// a world, a hole by its index, null past either end: for an index that
+	// can run off (the next one's, a number given): null safety takes an
+	// array's read as never null, and on native and the web one out of
+	// bounds is (a hole's world is always one of worlds: Course.test.hx)
+	public static function world(i:Int):Null<World>
+		return i >= 0 && i < worlds.length ? worlds[i] : null;
+
+	public static function hole(i:Int):Null<Hole>
+		return i >= 0 && i < holes.length ? holes[i] : null;
+
 	// a world's holes (their indices, in order)
 	public static function holesOf(world:Int):Array<Int>
 		return [for (i in 0...holes.length) if (holes[i].world == world) i];

@@ -50,10 +50,12 @@ class Rounds {
 		{hole: "Aurora Summit", shots: [[0, -1, 5.55], [-0.5664, -0.8241, 3.46], [0.6691, -0.7431, 5.55], [0.3227, -0.9465, 2.546]]}
 	];
 
-	// a hole's recorded shots (null: none)
+	// a hole's recorded shots (null: none, or no such hole)
 	public static function of(index:Int):Null<Array<Array<Float>>> {
+		var hole = Course.hole(index);
+		if (hole == null) return null;
 		for (r in rounds)
-			if (r.hole == Course.holes[index].name) return r.shots;
+			if (r.hole == hole.name) return r.shots;
 		return null;
 	}
 

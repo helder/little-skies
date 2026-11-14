@@ -27,6 +27,8 @@ class LittleSkies implements Markup {
 	static inline var MUTED = "#7d8597";
 	static inline var STAR = "#ffb703";
 
+	// (Loose: the markup's hole for view(game) is passed on as a Null<Any>, helder.view's code, which Strict refuses)
+	@:nullSafety(Loose)
 	static function main() {
 		fonts();
 		var game = new Game();
@@ -50,6 +52,11 @@ class LittleSkies implements Markup {
 	}
 
 	// the game's screen: the island's sky, the <Scene>, the HUD, the curtain
+	// (Off: <OrbitControls> in the <Scene> is made by a factory helder.view's
+	// markup types Void->Null<Any> and passes on as Void->Any, which no mode
+	// of null safety takes; the markup's expressions are the game's, all
+	// typed non-null)
+	@:nullSafety(Off)
 	public static function view(game:Game):View
 		return <view grow={1} background={game.sky()} font-family="Nunito" color={INK}>
 			<Scene grow={1} world={game.world} camera={game.camera} hdr animate setup={game.setup} ref={game.attach}>
@@ -314,9 +321,9 @@ class LittleSkies implements Markup {
 		// (the next island, opened by finishing this one's last hole for the first time;
 		// none after the last island: Show's children are built either way)
 		var opened = islandEnd && !last && before == 0;
-		var nextWorld = Course.worlds[w + 1];
+		var nextWorld = Course.world(w + 1), nextHole = Course.hole(i + 1);
 		var nextName = nextWorld == null ? "" : nextWorld.name;
-		var nextColor = last ? deep(i) : deep(i + 1);
+		var nextColor = nextHole == null ? deep(i) : hex(Course.worlds[nextHole.world].deep);
 		function star(k:Int):View {
 			var d = 0.25 + k * 0.22, size = k == 1 ? 62 : 50;
 			return <view slot={n > k ? "star" : "fade"} margin-top={k == 1 ? 0 : 12}

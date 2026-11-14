@@ -162,9 +162,12 @@ class TiltShift {
 		linear = device.createSampler({filter: Linear, wrap: Clamp});
 		stage = post.add(TiltStageShader, stageBytes);
 		var blurSlot = TiltStageShader.textures[1].binding, lightSlot = TiltStageShader.textures[2].binding;
+		// (enabled by prepare alone, with the light there and the targets made)
 		stage.bind = enc -> {
-			enc.setTexture(blurSlot, halfA, linear);
-			enc.setTexture(lightSlot, post.source, linear);
+			var a = halfA, l = post.source;
+			if (a == null || l == null) return;
+			enc.setTexture(blurSlot, a, linear);
+			enc.setTexture(lightSlot, l, linear);
 		};
 		stage.enabled = false;
 		stage.prepare = prepare;
@@ -176,12 +179,14 @@ class TiltShift {
 		var k = STRENGTH * amount;
 		var on = enabled && l != null && k > 0.002 && w > 1 && h > 1;
 		stage.enabled = on;
-		if (!on) return;
+		if (!on || l == null) return;
 		size((w + 1) >> 1, (h + 1) >> 1);
+		var a = halfA, b = halfB;
+		if (a == null || b == null) return;
 		var band = new Vec4(top, bottom, FALLOFF, Math.min(1, k));
 		var radius = RADIUS * h * 0.5 * Math.max(1, k);
 		// (down: the light at half size)
-		passA.colors[0].texture = halfA;
+		passA.colors[0].texture = a;
 		enc.beginPass(passA);
 		enc.setPipeline(down);
 		TiltBlurShader.params.t.write({step: new Vec4(0, 0, 0, 0), band: band}, blurBytes);
@@ -193,12 +198,12 @@ class TiltShift {
 		// (across, then down the columns)
 		for (axis in 0...2) {
 			var pass = axis == 0 ? passB : passA;
-			pass.colors[0].texture = axis == 0 ? halfB : halfA;
+			pass.colors[0].texture = axis == 0 ? b : a;
 			enc.beginPass(pass);
 			enc.setPipeline(blur);
 			TiltBlurShader.params.t.write({step: new Vec4(axis == 0 ? 1 / hw : 0, axis == 0 ? 0 : 1 / hh, radius, 0), band: band}, blurBytes);
 			enc.setUniforms(TiltBlurShader.uniforms[0].binding, blurBytes);
-			enc.setTexture(TiltBlurShader.textures[0].binding, axis == 0 ? halfA : halfB, linear);
+			enc.setTexture(TiltBlurShader.textures[0].binding, axis == 0 ? a : b, linear);
 			enc.setVertexBuffer(0, triangle);
 			enc.draw(3);
 			enc.endPass();
