@@ -30,6 +30,8 @@
     "email": "${HELDER_STORE_EMAIL}",
     "copyright": "2026 Codeurs VOF",
     "category": "GAMES_SPORTS",
+    "collects": false,
+    "ads": false,
     "appStore": {
       "app": {"contentRightsDeclaration": "DOES_NOT_USE_THIRD_PARTY_CONTENT"},
       "categories": {"primarySubcategoryTwo": "GAMES_PUZZLE"},
