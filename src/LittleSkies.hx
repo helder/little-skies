@@ -30,6 +30,8 @@ class LittleSkies implements Markup {
 	static function main() {
 		fonts();
 		var game = new Game();
+		var demo = Sys.getEnv("LS_DEMO"); // TEMP
+		if (demo != null) game.demo(Std.parseInt(demo), Rounds.of(Std.parseInt(demo))); // TEMP
 		Clock.add(t -> {
 			game.frame(t);
 			true;
@@ -354,7 +356,7 @@ class LittleSkies implements Markup {
 			</Show>
 			<view direction="row" column-gap={12} margin-top={6}>
 				<Button tag="retry" label="Retry" onPress={g.retry}/>
-				<Button tag="next" label={last ? "Scorecard" : islandEnd ? "Next island" : "Next hole"} primary color={accent(i)}
+				<Button tag="next" label={last ? "Scorecard" : islandEnd ? "Next island" : "Next hole"} primary color={deep(i)}
 					onPress={() -> last ? g.openMenu() : g.next()}/>
 			</view>
 		</view>;
@@ -447,7 +449,7 @@ class LittleSkies implements Markup {
 			<view height={8} radius={4} background="#ffffff70">
 				<view height={8} radius={4} width={(got() * 100 / (holes.length * 3)) + "%"} background={hex(world.accent)}/>
 			</view>
-			<view direction="row" justify="space-between" align-items="center">
+			<view direction="row" wrap justify="space-between" align-items="center" row-gap={4} column-gap={8}>
 				<StarCount text={got() + " of " + holes.length * 3} size={14} color={ink}/>
 				<text font-size={12} font-weight={700} color={ink} opacity={0.8}>{done() + " of " + holes.length + " holes · " + score()}</text>
 			</view>

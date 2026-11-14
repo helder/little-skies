@@ -208,6 +208,7 @@ class Game {
 	public function new() {
 		save = new Save();
 		best = signal(save.best(Course.holes));
+		if (Sys.getEnv("LS_FAKE") != null) best([for (i in 0...Course.holes.length) i < 10 ? Course.holes[i].par + (i % 3) : 0]); // TEMP
 		eye = world.node("eye");
 		camera = Camera.attach(eye, Camera.perspective(1.0, 0.1, 200));
 		sun = world.node("sun");
@@ -882,6 +883,14 @@ class Game {
 		return Sim.MIN_SPEED + (Sim.MAX_SPEED - Sim.MIN_SPEED) * Math.pow(power, 1.6);
 
 	// an aim held (a story's: the hole started, the fly-over skipped, the aim shown as if dragged)
+	// a story's scorecard: these best strokes (not saved), the scorecard open over hole index
+	public function showScores(scores:Array<Int>, index:Int) {
+		best(scores);
+		play(index);
+		endIntro();
+		openMenu();
+	}
+
 	public function holdAim(index:Int, dx:Float, dz:Float, strength:Float) {
 		play(index);
 		endIntro();

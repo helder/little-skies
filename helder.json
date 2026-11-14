@@ -1,7 +1,7 @@
 {
   "$schema": "https://helder.build/schema/helder.json",
   "name": "Little Skies",
-  "description": "Eighteen holes of mini golf, each island with its own tricks (bumpers, turnstiles, wind, lifts, portals, switches and gates). Drag back from the ball, let go to shoot.",
+  "description": "Thirty-six holes of mini golf on four islands, each with its own tricks (bumpers, turnstiles, wind, lifts, portals, switches, gates and ice), from easy putts to puzzles. Drag back from the ball, let go to shoot.",
   "id": "build.helder.littleskies",
   "version": "1.0",
   "build": 1,
@@ -20,10 +20,10 @@
   },
   "listing": {
     "subtitle": "Mini golf on floating islands",
-    "summary": "Eighteen holes, each with its own trick: bumpers, portals, crumbling bridges.",
+    "summary": "36 holes on four islands: bumpers, portals, waterfalls, ice.",
     "description": "store/description.txt",
     "keywords": ["mini golf", "golf", "putt", "puzzle", "islands", "sky", "physics", "3d", "casual", "relaxing"],
-    "promo": "Drag back, let go, and watch the line bend around the bumpers. Eighteen holes, no ads, no timers.",
+    "promo": "Drag back, let go, and watch the line bend around the bumpers. Thirty-six holes, no ads, no timers.",
     "website": "https://helder.build/little-skies",
     "support": "https://github.com/helder/little-skies/issues",
     "privacy": "https://github.com/helder/little-skies/blob/main/PRIVACY.md",

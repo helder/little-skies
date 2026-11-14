@@ -13,7 +13,7 @@ import helder.view.View;
 final turnstile = story({
 	name: "Holes/Turnstile",
 	store: true,
-	caption: "Eighteen holes, three islands",
+	caption: "36 holes, four islands",
 	feature: true,
 	render: c -> round(c, "Turnstile")
 });
@@ -34,6 +34,18 @@ final moonrise = story({name: "Holes/Moonrise", store: true, caption: "Portals a
 final pinball = story({name: "Holes/Pinball", store: true, caption: "Bumpers that kick back", render: c -> round(c, "Pinball")});
 
 final skipping = story({name: "Holes/Skipping Stone", store: true, caption: "Sink it in one", render: c -> round(c, "Skipping Stone")});
+
+final icefall = story({name: "Holes/Icefall", store: true, caption: "Ice, waterfalls, and the ball keeps rolling", render: c -> round(c, "Icefall")});
+
+// the scorecard over hole 15, fourteen holes played (par, a bogey, par, a double bogey, in turn)
+final scorecard = story({
+	name: "Screens/Scorecard",
+	render: c -> {
+		var g = game(c);
+		g.showScores([for (i in 0...Course.holes.length) i < 14 ? Course.holes[i].par + [0, 1, 0, 2][i % 4] : 0], 14);
+		LittleSkies.view(g);
+	}
+});
 
 // (the moment: seconds into the hole)
 private final MOMENT = 4.0;
