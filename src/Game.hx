@@ -9,6 +9,7 @@ import helder.scene.Node;
 import helder.scene.World as SceneWorld;
 import helder.scene.math.MathTools;
 import helder.scene.math.Quat;
+import helder.scene.render.Dof;
 import helder.scene.render.Fog;
 import helder.scene.render.InstancedMesh;
 import helder.scene.render.Light;
@@ -126,18 +127,20 @@ class Game {
 	final sunLight:Light;
 	// the diorama: the cool fill (a far light across from the sun), the
 	// dressing (contact shadows, lantern glow), the cloud sea, the creatures,
-	// the tilt-shift lens (null without a post chain)
+	// the tilt-shift lens (helder's Dof by depth; null without a post chain)
 	final fill:Node;
 	final fillLight:Light;
 	var dressing:Null<Dressing>;
 	var sea:Null<Clouds>;
 	var creatures:Null<Creatures>;
-	var tilt:Null<TiltShift>;
+	var tilt:Null<Dof>;
+	var lensChain:Null<helder.scene.render.PostProcess>;
 	// (the lanterns' places: x, y, z each)
 	final lanterns:Array<Float> = [];
-	// the focus band's ease (the frame's 0..1 rows) and the blur's
-	var focusTop = 0.3;
-	var focusBottom = 0.7;
+	// the focus's ease (its depth in metres, the band about it a share of
+	// that) and the blur's
+	var focusDepth = 0.0;
+	var focusBand = 0.2;
 	var blurEase = 0.0;
 	// the quality: 2 all of it, 1 the blur on and a thinner sea, 0 no blur
 	// (dropped a step when frames run long)
@@ -285,8 +288,11 @@ class Game {
 			post.levels = 4;
 			post.base = 2;
 		}
-		// (the lens: a stage of the post chain, made for each renderer)
-		tilt = post != null ? new TiltShift(post) : null;
+		// (the lens: the post chain's depth of field, by the world's depth:
+		// a far island inside the frame's band is blurred, as a lens would)
+		lensChain = post;
+		tilt = post != null ? Dof.tiltShift({band: 0.2, falloff: 0.35, strength: 0, radius: 0.011}) : null;
+		if (post != null) post.dof = tilt;
 		// (the cloud sea: a hook of the renderer's, made for each renderer)
 		sea = new Clouds(r);
 		placeClouds();
@@ -1519,33 +1525,32 @@ class Game {
 		}
 	}
 
-	// --- the lens: the tilt-shift's sharp band and its strength
+	// --- the lens: the tilt-shift's focus depth and band, and its strength
 
-	// (the point p's row on the frame, 0 its top; false behind the camera)
-	var rowY = 0.0;
+	// (the point p's depth before the camera, metres; false behind it)
+	var depthZ = 0.0;
 
-	function row(p:Vec3, aspect:Float):Bool {
-		var q = MathTools.transformPoint(camera.viewProjection(aspect), p);
+	function depth(p:Vec3):Bool {
 		var w = MathTools.transformPoint(camera.view(), p);
 		if (w.z > -0.05) return false;
-		rowY = Math.max(0, Math.min(1, (1 - q.y) / 2));
+		depthZ = -w.z;
 		return true;
 	}
 
-	// the band holds the ball, the cup and, aiming, the path's first bounce;
-	// at least BAND tall; the blur eased off while aiming, flying over, on the title
-	static inline var BAND = 0.36;
-	static inline var EDGE = 0.07;
+	// the sharp depths hold the ball, the cup and, aiming, the path's first
+	// bounce; the band at least BAND of the focus, EDGE more about them; the
+	// blur eased off while aiming, flying over, on the title
+	static inline var BAND = 0.12;
+	static inline var EDGE = 0.06;
 
 	function focus(dt:Float) {
-		var t = tilt, b = box;
-		if (t == null || b == null) return;
-		var aspect = Math.max(1, b.width) / Math.max(1, b.height);
-		var lo = 1.0, hi = 0.0;
+		var t = tilt;
+		if (t == null) return;
+		var lo = 1e9, hi = 0.0;
 		inline function hold(p:Vec3) {
-			if (row(p, aspect)) {
-				lo = Math.min(lo, rowY);
-				hi = Math.max(hi, rowY);
+			if (depth(p)) {
+				lo = Math.min(lo, depthZ);
+				hi = Math.max(hi, depthZ);
 			}
 		}
 		var s = screen.peek();
@@ -1559,34 +1564,30 @@ class Game {
 			hold(new Vec3(preview.px, preview.py, preview.pz));
 		}
 		if (hi < lo) {
-			lo = 0.4;
-			hi = 0.6;
+			lo = 8;
+			hi = 8;
 		}
-		lo -= EDGE;
-		hi += EDGE;
-		if (hi - lo < BAND) {
-			var m = (lo + hi) / 2;
-			lo = m - BAND / 2;
-			hi = m + BAND / 2;
-		}
-		// (eased: the band follows, not jumps; at once on a new hole)
+		var mid = (lo + hi) / 2;
+		var band = Math.max(BAND, (hi - lo) / 2 / mid + EDGE);
+		// (eased: the focus follows, not jumps; at once on a new hole)
 		var e = Math.min(1, dt * 4);
-		if (introTime >= 0 || dt == 0) e = 1;
-		focusTop += (lo - focusTop) * e;
-		focusBottom += (hi - focusBottom) * e;
+		if (introTime >= 0 || dt == 0 || focusDepth <= 0) e = 1;
+		focusDepth += (mid - focusDepth) * e;
+		focusBand += (band - focusBand) * e;
 		var want = title ? 0.6 : introTime >= 0 ? 0.35 : aimingNow ? 0.3 : 1.0;
 		blurEase += (want - blurEase) * Math.min(1, dt * 3);
-		t.top = Math.min(focusTop, lo);
-		t.bottom = Math.max(focusBottom, hi);
-		t.amount = blurEase;
+		t.distance = focusDepth;
+		// (the band reaching the ball, the cup and the bounce wherever the ease is)
+		t.band = Math.max(focusBand, Math.max(focusDepth - lo, hi - focusDepth) / focusDepth + EDGE);
+		t.strength = blurEase;
 	}
 
 	// the quality: set (the lens, the sea's puffs), and dropped a step after
 	// two seconds of frames slower than 40 a second (natively and on the web; not in a demo)
 	function setQuality(level:Int) {
 		quality = level;
-		var t = tilt;
-		if (t != null) t.enabled = level >= 1;
+		var t = tilt, chain = lensChain;
+		if (chain != null) chain.dof = level >= 1 ? t : null;
 		var c = sea;
 		if (c != null) c.quality(level);
 	}
